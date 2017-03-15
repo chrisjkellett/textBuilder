@@ -1,0 +1,149 @@
+{% extends 'layouts/master.html' %}
+{% block title %}Login{% endblock %}
+{% block body %}
+<script src="https://use.fontawesome.com/b780aadc2d.js"></script>
+<div class="container fully">
+    <div class="wrapper">
+        <div class="divider"></div>
+    </div>
+
+    <!--START HEADER -->
+    <header>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" id="title-link" href="">
+                        <span class="poiret">text</span>
+                        <span class="raleway font-heavy"><strong>Builder</strong></span>
+                        <span class="raleway font-small">v1.55</span>
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right raleway font-small">
+                        <li><a href="#" id="toolBoxEvent">toolbox</a></li>
+                        <li><a href="#" id="aboutEvent">about</a></li>
+                        <li><a href="#" id="loginEvent">login</a></li>
+                    </ul>
+                </div>
+            </div>
+    </header>
+    <!--END header -->
+
+
+    <!--START wrapper-->
+    <div id="content-wrap">
+
+        <!--START ex. LOGIN -->
+        <div id="loginForm" class="boxes">
+            <i class="fa fa-times closeBox" aria-hidden="true"></i>
+            <div class="form-content">
+                <span class="raleway font-small">username</span>
+                <input type="text" class="loginForm">
+                <span class="raleway font-small">password</span>
+                <input type="password" class="loginForm">
+                <input type="submit" name="Log in" value="Log in" class="btn btn-default">
+                <span class="raleway font-small">register here</span>
+            </div>
+        </div>
+        <!--END login -->
+
+        <!--START ex. ABOUT -->
+        <div id="aboutBox" class="boxes">
+            <i class="fa fa-times closeBox" aria-hidden="true"></i>
+            <div class="box-content">
+                <div class="box-content box-content-grow">
+                    <div class="col-vert">
+                        <p class="raleway font-small sub-heading">learn languages</p>
+                        <p>Build memory and knowledge of collocations and more things here... </p>
+                    </div>
+                    <div class="col-vert">
+                        <p class="raleway font-small sub-heading">build relationships</p>
+                        <p>Think about how texts are put together by focusing on nouns and their prepositions.</p>
+                    </div>
+                    <div class="col-vert">
+                        <p class="raleway font-small sub-heading">practice for exams</p>
+                        <p>Build your own texts to practice Use of English part 2.</p>
+                    </div>
+                </div>
+                <div class="col-bottom-right">
+                    <span class="raleway font-small">an open source project</span>
+                    <a href=""><i class="fa fa-github" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+        <!--END about -->
+
+        <!--START ex. toolbox -->
+        <div id="toolBox" class="boxes">
+            <i class="fa fa-times closeBox" aria-hidden="true"></i>
+            <div class="box-content box-content-grow">
+                <div class="col-vert">
+                    <p class="raleway font-small sub-heading">set level</p>
+                    <form class="form-inline">
+                        <select form="setLevel" class="form-control mySelect raleway font-small flex-btn" id="setLevel" name="level">
+                            <option value="easy">easy</option>
+                            <option value="intermediate">intermediate</option>
+                            <option value="hard">hard</option>
+                        </select>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--END toolbox -->
+
+
+        <!--START 1. INPUT -->
+        <div id="holdsForm" class="form-group">
+            <p class="raleway font-small sub-heading">Add your text (10 - 250 words)</p>
+            <textarea id="textArea"></textarea>
+            <!--<form class="form-inline">
+                <select form="setLevel" class="form-control mySelect raleway font-small flex-btn" id="setLevel" name="level">
+                    <option value="easy">easy</option>
+                    <option value="intermediate">intermediate</option>
+                    <option value="hard">hard</option>
+                </select>
+            </form>-->
+            <button class="btn btn-default flex-btn" id="submitBtn">Submit</button>
+            <span id="errorMessage">You must add a text of between 10 and 200 words.</span>
+        </div><!--END 1 INPUT -->
+
+        <!--START 2. EX -->
+        <div class="container" id="clozeEx">
+            <p class="raleway font-small sub-heading">Complete the gaps</p>
+            <div id="holdsGaps"></div>
+            <button class="btn btn-default flex-btn" id="submitBtn2">Compare against original</button>
+        </div>
+        <!--END 2. EX -->
+
+
+        <!--START 3. ANS -->
+        <div class="container" id="clozeAns">
+            <p class="raleway font-small sub-heading">Check your answers</p>
+            <div id="holdsAns"></div>
+            <div id="analysis"></div><br>
+            <button class="btn btn-default flex-btn" id="submitBtn5">Repeat exercise</button>
+            <button class="btn btn-default flex-btn" id="submitBtn3">New exercise</button>
+            <button class="btn btn-default flex-btn" id="submitBtn4" disabled>Save exercise</button>
+        </div>
+        <!--END 3. ANS -->
+
+    </div>
+
+</div><!--END WRAPPER -->
+
+<!--START FOOTER
+<div class="container">
+     <div class="wrapper">
+         <div class="divider-footer">
+            <div class="right-foot raleway font-small">You are logged in as cjkellett</div>
+        </div>
+    </div>
+</div>END FOOTER-->
+{% endblock %}
