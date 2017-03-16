@@ -67,6 +67,29 @@ toolBoxEvent.addEventListener('click', function(){
     };
 });
 
+//TOGGLE login/register
+registerEvent.addEventListener('click', function(){
+    if(registerForm.style.display == 'flex'){
+        registerForm.style.display = 'none';
+        loginForm.style.display = 'flex';
+    }else{
+        removeListeners();
+        registerForm.style.display = 'flex';
+    };
+});
+
+//TOGGLE register/login
+loginEvent2.addEventListener('click', function(){
+    if(loginForm.style.display == 'flex'){
+        loginForm.style.display = 'none';
+        registerForm.style.display = 'flex';
+    }else{
+        removeListeners();
+        loginForm.style.display = 'flex';
+    };
+});
+
+
 
 getTextArea.addEventListener('click', function(){
     removeListeners();

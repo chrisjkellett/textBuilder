@@ -14,6 +14,7 @@ var errorMessage = document.querySelector('#errorMessage');
 var analysisDiv = document.querySelector('#analysis');
 var loginEvent = document.querySelector('#loginEvent');
 var loginForm = document.querySelector('#loginForm');
+var registerForm = document.querySelector('#registerForm');
 var aboutBox = document.querySelector('#aboutBox');
 var toolBox = document.querySelector('#toolBox');
 var closeBox = document.querySelectorAll('.closeBox');

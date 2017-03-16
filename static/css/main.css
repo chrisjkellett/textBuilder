@@ -220,16 +220,21 @@ select.form-control:focus{
 }
 
 .form-content{
-    padding: 51px 10px;
+    padding: 41px 10px;
 }
 
 .col-bottom-right{
     text-align:right;
 }
 
-#loginForm, #toolBox{
+#loginForm, #toolBox, #registerForm{
     min-width: 300px;
     max-width: 300px;
+}
+
+.loginForm{
+    width:100%;
+    margin-bottom: 10px;
 }
 
 #aboutBox{
@@ -245,12 +250,7 @@ select.form-control:focus{
 }
 
 .closeBox:hover{
-    color:lightblue;
-}
-
-.loginForm{
-    width:100%;
-    margin-bottom: 10px;
+    color:#4b4b4b;
 }
 
 .fakeA{
@@ -325,7 +325,7 @@ select.form-control:focus{
 }
 
 @media screen and (max-width: 650px) {
-    #loginForm, #toolBox {
+    #loginForm, #toolBox, #registerForm {
         min-width: initial;
         max-width: initial;
         width: 100%;

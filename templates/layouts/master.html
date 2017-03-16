@@ -6,6 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='img/tb.ico') }}">
         <title>{% block title %}{% endblock %} | Text Builder </title>
     </head>
 
@@ -20,10 +21,9 @@
 
 
         {% block body %}{% endblock %}
-
-        <script src="{{ url_for('static', filename='js/events.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/funcs.js') }}"></script>
         <script src="{{ url_for('static', filename='js/vars.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/funcs.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/events.js') }}"></script>
         <script src="{{ url_for('static', filename='js/writeEx.js') }}"></script>
         {% block javascript %}{% endblock %}
     </body>

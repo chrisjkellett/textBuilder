@@ -1,5 +1,4 @@
 {% extends 'layouts/master.html' %}
-{% block title %}Login{% endblock %}
 {% block body %}
 <script src="https://use.fontawesome.com/b780aadc2d.js"></script>
 <div class="container fully">
@@ -44,15 +43,33 @@
         <div id="loginForm" class="boxes">
             <i class="fa fa-times closeBox" aria-hidden="true"></i>
             <div class="form-content">
-                <span class="raleway font-small">username</span>
-                <input type="text" class="loginForm">
-                <span class="raleway font-small">password</span>
-                <input type="password" class="loginForm">
-                <input type="submit" name="Log in" value="Log in" class="btn btn-default">
-                <span class="raleway font-small">register here</span>
+                <form action="">
+                    {{ form.csrf_token }}
+                    {{ form.email.label (class="raleway font-small") }}: {{ form.email(class="loginForm") }}
+                    {{ form.password1.label (class="raleway font-small") }}: {{ form.password1(class="loginForm") }}
+                    {{ form.login (value="Login", class="btn btn-default") }}
+                    <span class="raleway font-small fakeA" id="registerEvent">Register</span>
+                </form>
+
             </div>
         </div>
         <!--END login -->
+
+        <!--START ex. REGISTER -->
+        <div id="registerForm" class="boxes">
+            <i class="fa fa-times closeBox" aria-hidden="true"></i>
+            <div class="form-content">
+                <form action="">
+                    {{ form.csrf_token }}
+                    {{ form.email.label (class="raleway font-small") }}: {{ form.email(class="loginForm") }}
+                    {{ form.password1.label (class="raleway font-small") }}: {{ form.password1(class="loginForm") }}
+                    {{ form.password2.label (class="raleway font-small") }}: {{ form.password1(class="loginForm") }}
+                    {{ form.register (value="Register", class="btn btn-default") }}
+                    <span class="raleway font-small fakeA" id="loginEvent2">Login</span>
+                </form>
+            </div>
+        </div>
+        <!--END register -->
 
         <!--START ex. ABOUT -->
         <div id="aboutBox" class="boxes">
