@@ -43,33 +43,32 @@
         <div id="loginForm" class="boxes">
             <i class="fa fa-times closeBox" aria-hidden="true"></i>
             <div class="form-content">
-                <form action="">
+                <form method="post" action="">
                     {{ form.csrf_token }}
                     {{ form.email.label (class="raleway font-small") }}: {{ form.email(class="loginForm") }}
-                    {{ form.password1.label (class="raleway font-small") }}: {{ form.password1(class="loginForm") }}
+                    {{ form.password.label (class="raleway font-small") }}: {{ form.password(class="loginForm") }}
                     {{ form.login (value="Login", class="btn btn-default") }}
-                    <span class="raleway font-small fakeA" id="registerEvent">Register</span>
+                    <!--| <span class="raleway font-small fakeA" id="registerEvent">register</span>-->
                 </form>
 
             </div>
         </div>
         <!--END login -->
 
-        <!--START ex. REGISTER -->
+        <!--START ex. REGISTER-->
         <div id="registerForm" class="boxes">
             <i class="fa fa-times closeBox" aria-hidden="true"></i>
             <div class="form-content">
-                <form action="">
-                    {{ form.csrf_token }}
-                    {{ form.email.label (class="raleway font-small") }}: {{ form.email(class="loginForm") }}
-                    {{ form.password1.label (class="raleway font-small") }}: {{ form.password1(class="loginForm") }}
-                    {{ form.password2.label (class="raleway font-small") }}: {{ form.password1(class="loginForm") }}
-                    {{ form.register (value="Register", class="btn btn-default") }}
-                    <span class="raleway font-small fakeA" id="loginEvent2">Login</span>
+                <form method="post" action="">
+                    {{ regform.csrf_token }}
+                    {{ regform.email.label (class="raleway font-small") }}: {{ regform.email(class="loginForm") }}
+                    {{ regform.password1.label (class="raleway font-small") }}: {{ regform.password1(class="loginForm") }}
+                    {{ regform.password2.label (class="raleway font-small") }}: {{ regform.password2(class="loginForm") }}
+                    {{ regform.register (value="Register", class="btn btn-default") }}
+                    | <span class="raleway font-small fakeA" id="loginEvent2">login</span>
                 </form>
             </div>
-        </div>
-        <!--END register -->
+        </div><!--end REGISTER-->
 
         <!--START ex. ABOUT -->
         <div id="aboutBox" class="boxes">
