@@ -11,6 +11,7 @@ db = SQLAlchemy(app)
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True)
+    username = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(32))
     active = db.Column(db.Boolean())
     session = db.Column(db.Boolean())
@@ -18,8 +19,11 @@ class User(db.Model):
     save_text = db.relationship('Savetext', backref='user', lazy='dynamic')
 
     def __init__(self, email, password):
+        count = len(User.query.all())+ 1
         self.email = email
         self.password = password
+        split_email = email.split('@')
+        self.username = split_email[0] + str(count)
         self.active = False
         self.session = False
         self.token = hashlib.md5(str(time.time()).encode('utf-8')).hexdigest()
