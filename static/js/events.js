@@ -57,17 +57,7 @@ aboutEvent.addEventListener('click', function(){
 });
 
 
-//TOGGLE toolbox
-toolBoxEvent.addEventListener('click', function(){
-    if(toolBox.style.display == 'flex'){
-        toolBox.style.display = 'none';
-    }else{
-        removeListeners();
-        toolBox.style.display = 'flex';
-    };
-});
-
-//TOGGLE login/register
+/*TOGGLE login/register
 registerEvent.addEventListener('click', function(){
     if(registerForm.style.display == 'flex'){
         registerForm.style.display = 'none';
@@ -76,7 +66,7 @@ registerEvent.addEventListener('click', function(){
         removeListeners();
         registerForm.style.display = 'flex';
     };
-});
+});*/
 
 //TOGGLE register/login
 loginEvent2.addEventListener('click', function(){

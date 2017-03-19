@@ -26,9 +26,11 @@
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right raleway font-small">
-                        <li><a href="#" id="toolBoxEvent">toolbox</a></li>
-                        <li><a href="#" id="aboutEvent">about</a></li>
-                        <li><a href="#" id="loginEvent">login</a></li>
+                        {% if logged_in %}
+                        <li><div id="saveFileEvent" class="nav-link style-link">saved files</div></li>
+                        {% endif %}
+                        <li><div id="aboutEvent" class="nav-link style-link">about</div></li>
+                        <li><div id="loginEvent" class="nav-link style-link">login</div></li>
                     </ul>
                 </div>
             </div>
@@ -43,33 +45,32 @@
         <div id="loginForm" class="boxes">
             <i class="fa fa-times closeBox" aria-hidden="true"></i>
             <div class="form-content">
-                <form action="">
+                <form method="post" action="">
                     {{ form.csrf_token }}
                     {{ form.email.label (class="raleway font-small") }}: {{ form.email(class="loginForm") }}
-                    {{ form.password1.label (class="raleway font-small") }}: {{ form.password1(class="loginForm") }}
+                    {{ form.password.label (class="raleway font-small") }}: {{ form.password(class="loginForm") }}
                     {{ form.login (value="Login", class="btn btn-default") }}
-                    <span class="raleway font-small fakeA" id="registerEvent">Register</span>
+                    <!--| <span class="raleway font-small fakeA" id="registerEvent">register</span>-->
                 </form>
 
             </div>
         </div>
         <!--END login -->
 
-        <!--START ex. REGISTER -->
+        <!--START ex. REGISTER-->
         <div id="registerForm" class="boxes">
             <i class="fa fa-times closeBox" aria-hidden="true"></i>
             <div class="form-content">
-                <form action="">
-                    {{ form.csrf_token }}
-                    {{ form.email.label (class="raleway font-small") }}: {{ form.email(class="loginForm") }}
-                    {{ form.password1.label (class="raleway font-small") }}: {{ form.password1(class="loginForm") }}
-                    {{ form.password2.label (class="raleway font-small") }}: {{ form.password1(class="loginForm") }}
-                    {{ form.register (value="Register", class="btn btn-default") }}
-                    <span class="raleway font-small fakeA" id="loginEvent2">Login</span>
+                <form method="post" action="">
+                    {{ regform.csrf_token }}
+                    {{ regform.email.label (class="raleway font-small") }}: {{ regform.email(class="loginForm") }}
+                    {{ regform.password1.label (class="raleway font-small") }}: {{ regform.password1(class="loginForm") }}
+                    {{ regform.password2.label (class="raleway font-small") }}: {{ regform.password2(class="loginForm") }}
+                    {{ regform.register (value="Register", class="btn btn-default") }}
+                    | <span class="raleway font-small fakeA" id="loginEvent2">login</span>
                 </form>
             </div>
-        </div>
-        <!--END register -->
+        </div><!--end REGISTER-->
 
         <!--START ex. ABOUT -->
         <div id="aboutBox" class="boxes">
@@ -97,19 +98,12 @@
         </div>
         <!--END about -->
 
-        <!--START ex. toolbox -->
-        <div id="toolBox" class="boxes">
+        <!--START ex. savedfiles -->
+        <div id="savedFiles" class="boxes">
             <i class="fa fa-times closeBox" aria-hidden="true"></i>
             <div class="box-content box-content-grow">
                 <div class="col-vert">
-                    <p class="raleway font-small sub-heading">set level</p>
-                    <form class="form-inline">
-                        <select form="setLevel" class="form-control mySelect raleway font-small flex-btn" id="setLevel" name="level">
-                            <option value="easy">easy</option>
-                            <option value="intermediate">intermediate</option>
-                            <option value="hard">hard</option>
-                        </select>
-                    </form>
+                    <p class="raleway font-small sub-heading">no saved files</p>
                 </div>
             </div>
         </div>
@@ -120,13 +114,13 @@
         <div id="holdsForm" class="form-group">
             <p class="raleway font-small sub-heading">Add your text (10 - 250 words)</p>
             <textarea id="textArea"></textarea>
-            <!--<form class="form-inline">
+            <form class="form-inline">
                 <select form="setLevel" class="form-control mySelect raleway font-small flex-btn" id="setLevel" name="level">
                     <option value="easy">easy</option>
                     <option value="intermediate">intermediate</option>
                     <option value="hard">hard</option>
                 </select>
-            </form>-->
+            </form>
             <button class="btn btn-default flex-btn" id="submitBtn">Submit</button>
             <span id="errorMessage">You must add a text of between 10 and 200 words.</span>
         </div><!--END 1 INPUT -->
@@ -163,4 +157,9 @@
         </div>
     </div>
 </div>END FOOTER-->
+{% endblock %}
+{% block javascript %}
+    {% if logged_in %}
+        <script src="{{ url_for('static', filename='js/logged-in.js') }}"></script>
+    {% endif %}
 {% endblock %}
