@@ -2,10 +2,10 @@ from flask import (Flask,
                    render_template,
                    request,
                    flash,
-                   redirect,
+                   Markup,
                    url_for)
 from forms import Login_form, Register_form
-from models import User
+from models import User, db
 import hashlib
 
 
@@ -16,23 +16,28 @@ app.debug = True
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    loginform = Login_form(request.form)
+    logged_in = False
+    login_form = Login_form(request.form)
     regform = Register_form(request.form)
-    if request.method == 'POST' and loginform.validate():
-        email = loginform.email.data
-        password = loginform.password.data
+    if request.method == 'POST' and login_form.validate():
+        email = login_form.email.data
+        password = hashlib.md5(str(login_form.password.data).encode('utf-8')).hexdigest()
         my_user = User.query.filter_by(email=email, password=password).first()
         if my_user:
-            return 'user verified'
+            logged_in_message = Markup(f'You are logged in as <b>{login_form.email.data}</b>.')
+            flash(logged_in_message, 'success')
+            my_user.session = True
+            db.session.commit()
+            logged_in = True
         else:
-            flash('El usuario o contraseña no existe', 'danger')
+            flash('Not a registered user', 'danger')
     else:
-        errores = loginform.errors.items()
-        for campo, mensajes in errores:
-            for mensaje in mensajes:
-                flash(mensaje, 'danger')
+        errors = login_form.errors.items()
+        for field, messages in errors:
+            for message in messages:
+                flash(message, 'danger')
 
-    return render_template('items/index.html', form=loginform, regform=regform)
+    return render_template('items/index.html', form=login_form, regform=regform, logged_in=logged_in)
 
 
 

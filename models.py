@@ -13,6 +13,7 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True)
     password = db.Column(db.String(32))
     active = db.Column(db.Boolean())
+    session = db.Column(db.Boolean())
     token = db.Column(db.String(32))
     save_text = db.relationship('Savetext', backref='user', lazy='dynamic')
 
@@ -20,6 +21,7 @@ class User(db.Model):
         self.email = email
         self.password = password
         self.active = False
+        self.session = False
         self.token = hashlib.md5(str(time.time()).encode('utf-8')).hexdigest()
 
     def __repr__(self):

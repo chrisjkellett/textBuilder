@@ -44,7 +44,7 @@ var resetVariables = function(){
 var removeListeners = function(){
     aboutBox.style.display = 'none';
     loginForm.style.display = 'none';
-    toolBox.style.display = 'none';
+    savedFiles.style.display = 'none';
     registerForm.style.display = 'none';
 };
 
