@@ -30,7 +30,11 @@
                         <li><div id="saveFileEvent" class="nav-link style-link">saved files</div></li>
                         {% endif %}
                         <li><div id="aboutEvent" class="nav-link style-link">about</div></li>
+                        {% if logged_in %}
+                        <li><div id="logoutEvent" class="nav-link style-link">logout</div></li>
+                        {% else %}
                         <li><div id="loginEvent" class="nav-link style-link">login</div></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
@@ -161,5 +165,7 @@
 {% block javascript %}
     {% if logged_in %}
         <script src="{{ url_for('static', filename='js/logged-in.js') }}"></script>
+    {% else %}
+        <script src="{{ url_for('static', filename='js/notlog.js') }}"></script>
     {% endif %}
 {% endblock %}

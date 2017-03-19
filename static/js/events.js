@@ -35,15 +35,6 @@ submitBtn5.addEventListener('click', function(){
     holdsForm.style.display = 'block';
 });
 
-//TOGGLE login
-loginEvent.addEventListener('click', function(){
-    if(loginForm.style.display == 'flex'){
-        loginForm.style.display = 'none';
-    }else{
-        removeListeners();
-        loginForm.style.display = 'flex';
-    };
-});
 
 
 //TOGGLE about
