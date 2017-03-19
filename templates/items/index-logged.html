@@ -21,13 +21,14 @@
                     <a class="navbar-brand" id="title-link" href="">
                         <span class="poiret">text</span>
                         <span class="raleway font-heavy"><strong>Builder</strong></span>
-                        <span class="raleway font-small">v1.6</span>
+                        <span class="raleway font-small">v1.55</span>
                     </a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right raleway font-small">
+                        <li><div id="saveFileEvent" class="nav-link style-link">saved files</div></li>
                         <li><div id="aboutEvent" class="nav-link style-link">about</div></li>
-                        <li><div id="loginEvent" class="nav-link style-link">login</div></li>
+                        <li><div id="logoutEvent" class="nav-link style-link"><a href="{{ url_for('index') }}" class="style-link">logout</a></div></li>
                     </ul>
                 </div>
             </div>
@@ -37,37 +38,6 @@
 
     <!--START wrapper-->
     <div id="content-wrap">
-
-        <!--START ex. LOGIN -->
-        <div id="loginForm" class="boxes">
-            <i class="fa fa-times closeBox" aria-hidden="true"></i>
-            <div class="form-content">
-                <form method="post" action="">
-                    {{ form.csrf_token }}
-                    {{ form.email.label (class="raleway font-small") }}: {{ form.email(class="loginForm") }}
-                    {{ form.password.label (class="raleway font-small") }}: {{ form.password(class="loginForm") }}
-                    {{ form.login (value="Login", class="btn btn-default") }}
-                    | <span class="raleway font-small fakeA" id="registerEvent">register</span>
-                </form>
-
-            </div>
-        </div>
-        <!--END login -->
-
-        <!--START ex. REGISTER-->
-        <div id="registerForm" class="boxes">
-            <i class="fa fa-times closeBox" aria-hidden="true"></i>
-            <div class="form-content">
-                <form method="post" action="">
-                    {{ regform.csrf_token }}
-                    {{ regform.email.label (class="raleway font-small") }}: {{ regform.email(class="loginForm") }}
-                    {{ regform.password1.label (class="raleway font-small") }}: {{ regform.password1(class="loginForm") }}
-                    {{ regform.password2.label (class="raleway font-small") }}: {{ regform.password2(class="loginForm") }}
-                    {{ regform.register (value="Register", class="btn btn-default") }}
-                    | <span class="raleway font-small fakeA" id="loginEvent2">login</span>
-                </form>
-            </div>
-        </div><!--end REGISTER-->
 
         <!--START ex. ABOUT -->
         <div id="aboutBox" class="boxes">
@@ -94,6 +64,17 @@
             </div>
         </div>
         <!--END about -->
+
+        <!--START ex. savedfiles -->
+        <div id="savedFiles" class="boxes">
+            <i class="fa fa-times closeBox" aria-hidden="true"></i>
+            <div class="box-content box-content-grow">
+                <div class="col-vert">
+                    <p class="raleway font-small sub-heading">no saved files</p>
+                </div>
+            </div>
+        </div>
+        <!--END toolbox -->
 
 
         <!--START 1. INPUT -->
@@ -145,5 +126,5 @@
 </div>END FOOTER-->
 {% endblock %}
 {% block javascript %}
-    <script src="{{ url_for('static', filename='js/notlog.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/logged-in.js') }}"></script>
 {% endblock %}

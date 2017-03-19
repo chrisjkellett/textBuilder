@@ -92,16 +92,19 @@ header{
     border-top:0;
 }
 
-.nav-link{
+.nav-link, .navbar-nav>li>a{
 margin:15px;
+padding:0;
 }
 
 .style-link{
 cursor:pointer;
+color: inherit;
 }
 
 .style-link:hover{
 color:#A9A9A9;
+text-decoration:none;
 }
 
 

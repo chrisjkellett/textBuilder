@@ -9,3 +9,8 @@ saveFileEvent.addEventListener('click', function(){
         savedFiles.style.display = 'flex';
     };
 });
+
+var removeListeners = function(){
+    aboutBox.style.display = 'none';
+    savedFiles.style.display = 'none';
+};

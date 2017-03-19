@@ -59,16 +59,6 @@ registerEvent.addEventListener('click', function(){
     };
 });*/
 
-//TOGGLE register/login
-loginEvent2.addEventListener('click', function(){
-    if(loginForm.style.display == 'flex'){
-        loginForm.style.display = 'none';
-        registerForm.style.display = 'flex';
-    }else{
-        removeListeners();
-        loginForm.style.display = 'flex';
-    };
-});
 
 
 
