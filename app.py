@@ -4,7 +4,8 @@ from flask import (Flask,
                    flash,
                    Markup,
                    url_for,
-                   redirect)
+                   redirect,
+                   session)
 from forms import Login_form, Register_form
 from models import User, db
 import hashlib
@@ -26,7 +27,7 @@ def index():
         if my_user:
             logged_in_message = Markup(f'You are logged in as <b>{my_user.username}</b>.')
             flash(logged_in_message, 'success')
-            my_user.session = True
+            session['user'] = my_user.id
             username = my_user.username
             db.session.commit()
             return redirect(url_for('logged_in', username=username))
@@ -48,6 +49,7 @@ def logged_in(username):
 
 @app.route('/logout')
 def log_out():
+    session.clear()
     return redirect(url_for('index'))
 
 if __name__ == "__main__":
