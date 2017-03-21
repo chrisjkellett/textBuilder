@@ -42,7 +42,7 @@
         <div id="loginForm" class="boxes">
             <i class="fa fa-times closeBox" aria-hidden="true"></i>
             <div class="form-content">
-                <form method="post" action="">
+                <form method="post" action="" name="login">
                     {{ form.csrf_token }}
                     {{ form.email.label (class="raleway font-small") }}: {{ form.email(class="loginForm") }}
                     {{ form.password.label (class="raleway font-small") }}: {{ form.password(class="loginForm") }}
@@ -58,7 +58,7 @@
         <div id="registerForm" class="boxes">
             <i class="fa fa-times closeBox" aria-hidden="true"></i>
             <div class="form-content">
-                <form method="post" action="">
+                <form method="post" action="" name="register">
                     {{ regform.csrf_token }}
                     {{ regform.email.label (class="raleway font-small") }}: {{ regform.email(class="loginForm") }}
                     {{ regform.password.label (class="raleway font-small") }}: {{ regform.password(class="loginForm") }}

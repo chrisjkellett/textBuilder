@@ -45,7 +45,7 @@ def index():
         email = login_form.email.data
         password = hashlib.md5(str(login_form.password.data).encode('utf-8')).hexdigest()
         my_user = User.query.filter_by(email=email, password=password).first()
-        if my_user:
+        if my_user and login_form.validate():
             logged_in_message = Markup(f'You are logged in as <b>{my_user.username}</b>.')
             flash(logged_in_message, 'success')
             session['user'] = my_user.id
@@ -53,13 +53,19 @@ def index():
             db.session.commit()
             return redirect(url_for('logged_in', username=username))
         else:
-            flash('Not a registered user', 'danger')
+            flash('Email or password incorrect', 'danger')
 
     else:
         errors = login_form.errors.items()
-        for field, messages in errors:
-            for message in messages:
-                flash(message, 'danger')
+        if errors:
+            for field, messages in errors:
+                for message in messages:
+                    flash(message, 'danger')
+        else:
+            errors = reg_form.errors.items()
+            for field, messages in errors:
+                for message in messages:
+                    flash(message, 'danger')
 
     return render_template('items/index.html', form=login_form, regform=reg_form)
 
