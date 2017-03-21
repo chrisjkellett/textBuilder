@@ -48,20 +48,6 @@ aboutEvent.addEventListener('click', function(){
 });
 
 
-/*TOGGLE login/register
-registerEvent.addEventListener('click', function(){
-    if(registerForm.style.display == 'flex'){
-        registerForm.style.display = 'none';
-        loginForm.style.display = 'flex';
-    }else{
-        removeListeners();
-        registerForm.style.display = 'flex';
-    };
-});*/
-
-
-
-
 getTextArea.addEventListener('click', function(){
     removeListeners();
 });

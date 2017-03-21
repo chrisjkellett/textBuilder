@@ -61,7 +61,7 @@
                 <form method="post" action="">
                     {{ regform.csrf_token }}
                     {{ regform.email.label (class="raleway font-small") }}: {{ regform.email(class="loginForm") }}
-                    {{ regform.password1.label (class="raleway font-small") }}: {{ regform.password1(class="loginForm") }}
+                    {{ regform.password.label (class="raleway font-small") }}: {{ regform.password(class="loginForm") }}
                     {{ regform.password2.label (class="raleway font-small") }}: {{ regform.password2(class="loginForm") }}
                     {{ regform.register (value="Register", class="btn btn-default") }}
                     | <span class="raleway font-small fakeA" id="loginEvent2">login</span>
@@ -145,5 +145,5 @@
 </div>END FOOTER-->
 {% endblock %}
 {% block javascript %}
-    <script src="{{ url_for('static', filename='js/notlog.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
 {% endblock %}
