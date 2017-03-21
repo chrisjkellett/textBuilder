@@ -21,52 +21,51 @@ def index():
     login_form = LoginForm(request.form)
     reg_form = RegisterForm(request.form)
 
-    if request.method == 'POST' and reg_form.validate():
-        email = login_form.email.data
-        password = hashlib.md5(str(login_form.password.data).encode('utf-8')).hexdigest()
-        make_username = email.split('@')
-        username_stripped = make_username[0]
-        username_check = User.query.filter_by(username=username_stripped).count()
-        if username_check == 0:
-            username = username_stripped
-        else:
-            username = username_stripped + str(username_check+ 1)
-        my_new_user = User(email, password, username)
-        db.session.add(my_new_user)
-        try:
-            db.session.commit()
-            message = Markup(f'User <strong>{username}</strong> created. Please confirm registration by email.')
-            flash(message, 'success')
-        except:
-            db.session.rollback()
-            flash('An error has occured', 'danger')
-
-    elif request.method == 'POST' and login_form.validate():
-        email = login_form.email.data
-        password = hashlib.md5(str(login_form.password.data).encode('utf-8')).hexdigest()
-        my_user = User.query.filter_by(email=email, password=password).first()
-        if my_user and login_form.validate():
-            logged_in_message = Markup(f'You are logged in as <b>{my_user.username}</b>.')
-            flash(logged_in_message, 'success')
-            session['user'] = my_user.id
-            username = my_user.username
-            db.session.commit()
-            return redirect(url_for('logged_in', username=username))
-        else:
-            flash('Email or password incorrect', 'danger')
-
-    else:
-        errors = login_form.errors.items()
-        if errors:
-            for field, messages in errors:
-                for message in messages:
-                    flash(message, 'danger')
+    if request.method == 'POST' and reg_form.register.data:
+        if reg_form.validate():
+            email = login_form.email.data
+            password = hashlib.md5(str(login_form.password.data).encode('utf-8')).hexdigest()
+            make_username = email.split('@')
+            username_stripped = make_username[0]
+            username_check = User.query.filter(User.email.startswith(username_stripped)).count()
+            if username_check == 0:
+                username = username_stripped
+            else:
+                username = username_stripped + str(username_check + 1)
+            my_new_user = User(email, password, username)
+            db.session.add(my_new_user)
+            try:
+                db.session.commit()
+                message = Markup(f'User <strong>{username}</strong> now requires email confirmation.')
+                flash(message, 'success')
+            except:
+                db.session.rollback()
+                flash('An error has occured', 'danger')
         else:
             errors = reg_form.errors.items()
             for field, messages in errors:
                 for message in messages:
                     flash(message, 'danger')
-
+    elif request.method == 'POST' and login_form.login.data:
+        if login_form.validate():
+            email = login_form.email.data
+            password = hashlib.md5(str(login_form.password.data).encode('utf-8')).hexdigest()
+            my_user = User.query.filter_by(email=email, password=password).first()
+            if my_user and login_form.validate():
+                logged_in_message = Markup(f'You are logged in as <b>{my_user.username}</b>.')
+                flash(logged_in_message, 'success')
+                session['user'] = my_user.id
+                username = my_user.username
+                db.session.commit()
+                return redirect(url_for('logged_in', username=username))
+            else:
+                flash_message = Markup('<strong>Email</strong> or <strong>password</strong> incorrect.')
+                flash(flash_message, 'danger')
+        else:
+            errors = login_form.errors.items()
+            for field, messages in errors:
+                for message in messages:
+                    flash(message, 'danger')
     return render_template('items/index.html', form=login_form, regform=reg_form)
 
 

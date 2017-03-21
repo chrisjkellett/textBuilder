@@ -152,7 +152,7 @@ text-decoration:none;
 
 #errorMessage{
     display: none;
-    font-family: Raleway;
+    font-family: Raleway, sans-serif;
     font-size: 14.44px;
     font-weight:600;  
 }
@@ -302,7 +302,7 @@ padding:2px;
 
 /*FONT STYLES*/
 .raleway{
-    font-family: 'Raleway';
+    font-family: 'Raleway', sans-serif;
     font-size: 32px;
 }
 
