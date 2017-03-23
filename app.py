@@ -57,16 +57,20 @@ def index():
             email = login_form.email.data
             password = hashlib.md5(str(login_form.password.data).encode('utf-8')).hexdigest()
             my_user = User.query.filter_by(email=email, password=password).first()
-            if my_user and login_form.validate():
+            if my_user and login_form.validate() and my_user.active:
                 logged_in_message = Markup(f'You are logged in as <b>{my_user.username}</b>.')
                 flash(logged_in_message, 'success')
                 session['user'] = my_user.id
                 username = my_user.username
                 db.session.commit()
                 return redirect(url_for('logged_in', username=username))
+            elif my_user and login_form.validate():
+                confirm_message = Markup(f'User <b>{my_user.username}</b> requires confirmation.')
+                flash(confirm_message, 'success')
             else:
                 flash_message = Markup('<strong>Email</strong> or <strong>password</strong> incorrect.')
                 flash(flash_message, 'danger')
+            return redirect(url_for('index'))
         else:
             errors = login_form.errors.items()
             for field, messages in errors:
