@@ -1,3 +1,4 @@
+
 //body - stage 1: select gaps
 var setRandomGaps = function(){
     for (var i = 0; i < maxFor; i++){

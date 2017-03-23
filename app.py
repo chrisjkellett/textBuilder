@@ -6,14 +6,19 @@ from flask import (Flask,
                    url_for,
                    redirect,
                    session)
+from flask_mail import Mail, Message
 from forms import LoginForm, RegisterForm
 from models import User, db
 import hashlib
-
+import configparser
 
 app = Flask(__name__)
-app.secret_key = 'secret'
-app.debug = True
+
+config = configparser.ConfigParser()
+config.read('.env')
+
+app.debug = config['DEFAULT']['DEBUG']
+app.secret_key = config['DEFAULT']['SECRET_KEY']
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -41,6 +46,7 @@ def index():
             except:
                 db.session.rollback()
                 flash('An error has occured', 'danger')
+            return redirect(url_for('index'))
         else:
             errors = reg_form.errors.items()
             for field, messages in errors:
