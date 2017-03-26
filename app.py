@@ -33,15 +33,6 @@ mail = Mail(app)
 def index():
     login_form = LoginForm(request.form)
     reg_form = RegisterForm(request.form)
-    msg = Message("Activate your account",
-                  sender=('TextBuilder', 'no-reply@idered.com'),
-                  recipients=['cjkellett@hotmail.co.uk']
-                  )
-    #link = 'http://' + config['DEFAULT']['HOST'] + url_for('activate', token=my_new_user.token)
-    msg.body = 'hello'
-    #msg.html = render_template('emails/activate.html', username=reg_form.username.data, link=link)
-    mail.send(msg)
-
     if request.method == 'POST' and reg_form.register.data:
         if reg_form.validate():
             email = login_form.email.data
@@ -59,6 +50,14 @@ def index():
                 db.session.commit()
                 message = Markup(f'User <strong>{username}</strong> now requires email confirmation.')
                 flash(message, 'success')
+                msg = Message("Activate your account",
+                              sender=('TextBuilder', 'no-reply@textbuilder.com'),
+                              recipients=[email]
+                              )
+                link = 'http://' + config['DEFAULT']['HOST'] + url_for('confirm', token=my_new_user.token)
+                msg.body = render_template('emails/confirm.txt', link=link)
+                msg.html = render_template('emails/confirm.html', link=link)
+                mail.send(msg)
             except:
                 db.session.rollback()
                 flash('An error has occured', 'danger')
@@ -103,6 +102,19 @@ def logged_in(username):
 @app.route('/logout')
 def log_out():
     session.clear()
+    return redirect(url_for('index'))
+
+
+@app.route("/confirm/<token>")
+def confirm(token):
+    my_user = User.query.filter_by(token=token).first()
+    my_user.active = True
+    try:
+        db.session.commit()
+        message = Markup(f'User <strong>{my_user.username}</strong> is confirmed')
+        flash(message, 'success')
+    except:
+        db.session.rollback()
     return redirect(url_for('index'))
 
 if __name__ == "__main__":
