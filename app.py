@@ -20,11 +20,27 @@ config.read('.env')
 app.debug = config['DEFAULT']['DEBUG']
 app.secret_key = config['DEFAULT']['SECRET_KEY']
 
+app.config['MAIL_SERVER'] = config['MAIL']['MAIL_SERVER']
+app.config['MAIL_PORT'] = config['MAIL']['MAIL_PORT']
+app.config['MAIL_USE_SSL'] = config['MAIL']['MAIL_USE_SSL']
+app.config['MAIL_USERNAME'] = config['MAIL']['MAIL_USERNAME']
+app.config['MAIL_PASSWORD'] = config['MAIL']['MAIL_PASSWORD']
+app.config['MAIL_DEBUG'] = False
+mail = Mail(app)
+
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     login_form = LoginForm(request.form)
     reg_form = RegisterForm(request.form)
+    msg = Message("Activate your account",
+                  sender=('TextBuilder', 'no-reply@idered.com'),
+                  recipients=['cjkellett@hotmail.co.uk']
+                  )
+    #link = 'http://' + config['DEFAULT']['HOST'] + url_for('activate', token=my_new_user.token)
+    msg.body = 'hello'
+    #msg.html = render_template('emails/activate.html', username=reg_form.username.data, link=link)
+    mail.send(msg)
 
     if request.method == 'POST' and reg_form.register.data:
         if reg_form.validate():
