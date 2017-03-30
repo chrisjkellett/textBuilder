@@ -30,14 +30,14 @@ class User(db.Model):
 
 class Savetext(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(32))
+    title = db.Column(db.String(32))
     gettext = db.Column(db.String(5000))
     id_user = db.Column(db.ForeignKey('user.id'))
 
-    def __init__(self, name, gettext, id_user):
-        self.name = name
+    def __init__(self, title, gettext, id_user):
+        self.title = title
         self.gettext = gettext
         self.id_user = id_user
 
     def __repr__(self):
-        return '<Savetext %r>' % self.name
+        return '<Savetext %r>' % self.title

@@ -7,8 +7,8 @@ from flask import (Flask,
                    redirect,
                    session)
 from flask_mail import Mail, Message
-from forms import LoginForm, RegisterForm
-from models import User, db
+from forms import LoginForm, RegisterForm, GetText
+from models import User, Savetext, db
 import hashlib
 import configparser
 
@@ -96,7 +96,8 @@ def index():
 
 @app.route('/<username>', methods=['GET', 'POST'])
 def logged_in(username):
-    return render_template('items/index-logged.html')
+    user_texts = Savetext.query.filter_by(id_user=session['user']).all()
+    return render_template('items/index-logged.html', user_texts=user_texts)
 
 
 @app.route('/logout')
@@ -116,6 +117,14 @@ def confirm(token):
     except:
         db.session.rollback()
     return redirect(url_for('index'))
+
+
+@app.route('/<username>', methods=['GET', 'POST'])
+def save_text(username):
+    message = Markup('Text <strong>{text-title}</strong> saved')
+    flash(message, 'success')
+    return redirect(url_for('logged_in'))
+
 
 if __name__ == "__main__":
     app.run()
