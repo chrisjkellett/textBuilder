@@ -298,6 +298,10 @@ padding:2px;
   text-decoration: underline;
 }
 
+ol{
+padding-left:15px;
+margin-top:6px;
+}
 
 
 /*FONT STYLES*/

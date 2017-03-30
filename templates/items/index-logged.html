@@ -70,8 +70,16 @@
             <i class="fa fa-times closeBox" aria-hidden="true"></i>
             <div class="box-content box-content-grow">
                 <div class="col-vert">
+                    {% if user_texts %}
                     <p class="raleway font-small sub-heading">saved files</p>
-                    {{ for 
+                        <ol class="raleway font-small">
+                    {% for text in user_texts %}
+                            <li><a href="">{{ text.title }}</a></li>
+                    {% endfor %}
+                        </ol>
+                    {% else %}
+                    <p class="raleway font-small sub-heading">no saved files</p>
+                    {% endif %}
                 </div>
             </div>
         </div>
