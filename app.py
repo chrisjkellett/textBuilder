@@ -36,6 +36,7 @@ def index():
     if request.method == 'POST' and reg_form.register.data:
         if reg_form.validate():
             email = login_form.email.data
+            my_new_user = User.query.filter_by(email=email).first()
             password = hashlib.md5(str(login_form.password.data).encode('utf-8')).hexdigest()
             make_username = email.split('@')
             username_stripped = make_username[0]
@@ -44,23 +45,27 @@ def index():
                 username = username_stripped
             else:
                 username = username_stripped + str(username_check + 1)
-            my_new_user = User(email, password, username)
-            db.session.add(my_new_user)
-            try:
-                db.session.commit()
-                message = Markup(f'User <strong>{username}</strong> now requires email confirmation.')
-                flash(message, 'success')
-                msg = Message("Activate your account",
-                              sender=('TextBuilder', 'no-reply@textbuilder.com'),
-                              recipients=[email]
-                              )
-                link = 'http://' + config['DEFAULT']['HOST'] + url_for('confirm', token=my_new_user.token)
-                msg.body = render_template('emails/confirm.txt', link=link)
-                msg.html = render_template('emails/confirm.html', link=link)
-                mail.send(msg)
-            except:
-                db.session.rollback()
-                flash('An error has occured', 'danger')
+            if not my_new_user:
+                my_new_user = User(email, password, username)
+                db.session.add(my_new_user)
+                try:
+                    db.session.commit()
+                    message = Markup(f'User <strong>{username}</strong> now requires email confirmation.')
+                    flash(message, 'success')
+                    msg = Message("Activate your account",
+                                  sender=('TextBuilder', 'no-reply@textbuilder.com'),
+                                  recipients=[email]
+                                  )
+                    link = 'http://' + config['DEFAULT']['HOST'] + url_for('confirm', token=my_new_user.token)
+                    msg.body = render_template('emails/confirm.txt', link=link, username=username)
+                    msg.html = render_template('emails/confirm.html', link=link, username=username)
+                    mail.send(msg)
+                except:
+                    db.session.rollback()
+                    flash('An error has occured', 'danger')
+            else:
+                message = Markup(f'User at <strong>{email}</strong> already exists')
+                flash(message, 'danger')
             return redirect(url_for('index'))
         else:
             errors = reg_form.errors.items()

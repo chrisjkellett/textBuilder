@@ -2,6 +2,7 @@ import time
 import hashlib
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root@localhost/textbuilder1.6'
@@ -33,11 +34,13 @@ class Savetext(db.Model):
     title = db.Column(db.String(32))
     gettext = db.Column(db.String(5000))
     id_user = db.Column(db.ForeignKey('user.id'))
+    timestamp = db.Column(db.Date)
 
-    def __init__(self, title, gettext, id_user):
+    def __init__(self, title, gettext, id_user, timestamp ):
         self.title = title
         self.gettext = gettext
         self.id_user = id_user
+        self.timestamp = datetime.utcnow()
 
     def __repr__(self):
         return '<Savetext %r>' % self.title
