@@ -120,6 +120,8 @@
             <a href=""><button class="btn btn-default flex-btn disabled">Save exercise</button></a>
             <div id="addTitle" class="titlebox">
                 <div class="btn-wrapper">
+                {{ text_form.csrf_token }}
+                {{ text_form.user_text (id="textAreaHidden", class="textArea") }}
                 {{ text_form.title.label (class="raleway font-small") }}: {{ text_form.title(class="loginForm", maxlength="32") }}
                 {{ text_form.save (value="Save text", class="btn btn-default") }}
                 </div>
