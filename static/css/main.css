@@ -200,16 +200,22 @@ select.form-control:focus{
     border-color: #A9A9A9;
 }
 
-.danger{
-    color: seagreen;
+.feedback{
+    border: 1px solid lightgrey;
+    padding: 3px;
+    color: inherit;
 }
 
-.success{
-    color: seagreen;
+.successy{
+    background: #DFF0D8;
+}
+
+.dangery{
+    background: #FFCCCC;
 }
 
 .alerty{
-    color: seagreen;
+    background: #FFFF99;
 }
 
 .not-pad-left{

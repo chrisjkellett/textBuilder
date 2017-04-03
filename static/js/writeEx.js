@@ -45,11 +45,11 @@ var correctEx = function(){
             };
 
             if(lTextA[i] == getInput){
-                holdsAns.innerHTML += `<span class="success raleway font-small" id="Q${i}"><strong>${lTextA[i]}</strong> \u2713</span> `;
+                holdsAns.innerHTML += `<span class="feedback successy raleway font-small" id="Q${i}"><strong>${lTextA[i]}</strong> \u2713</span> `;
             }else if(lTextA[i] != getInput && getInput == '-'){
-                holdsAns.innerHTML += `<span class="alerty raleway font-small" id="Q${i}"><strong>${lTextA[i]}</strong></span> `;
+                holdsAns.innerHTML += `<span class="feedback alerty raleway font-small" id="Q${i}"><strong>${lTextA[i]}</strong></span> `;
             }else{
-                holdsAns.innerHTML += `<strike>${getInput}</strike>&nbsp;<span class="danger raleway font-small" id="Q${i}"><strong>${lTextA[i]}</strong></span> 
+                holdsAns.innerHTML += `<strike>${getInput}</strike>&nbsp;<span class="feedback dangery raleway font-small" id="Q${i}"><strong>${lTextA[i]}</strong></span>
                  `;
         };  
     }else{
