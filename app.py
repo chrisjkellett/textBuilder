@@ -103,6 +103,19 @@ def index():
 def logged_in(username):
     text_form = GetTextForm(request.form)
     user_texts = Savetext.query.filter_by(id_user=session['user']).all()
+    if request.method == 'POST':
+        title = text_form.title.data
+        user_text = text_form.user_text.data
+        my_text = Savetext(title, user_text, session['user'])
+        db.session.add(my_text)
+        try:
+            db.session.commit()
+            message = Markup(f'Saved <strong>{title}</strong>.')
+            flash(message, 'success')
+        except:
+            db.session.rollback()
+            flash('error', 'danger')
+        return redirect(url_for('logged_in', username=username))
     return render_template('items/index-logged.html', user_texts=user_texts, text_form=text_form)
 
 
@@ -127,7 +140,8 @@ def confirm(token):
 
 @app.route('/<int:id>', methods=['GET', 'POST'])
 def save_text(id):
-    return redirect(url_for('logged_in'))
+    my_text = Savetext.query.filter_by(id=id).first()
+    return render_template('items/ex-view.html', text=my_text)
 
 
 if __name__ == "__main__":

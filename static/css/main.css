@@ -122,7 +122,11 @@ text-decoration:none;
     margin:10px 0px 5px;
 }
 
-#textAreaHidden, #addTitle{
+#addTitle{
+    display:none;
+}
+
+#textAreaHidden{
     display:none;
 }
 
