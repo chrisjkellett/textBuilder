@@ -44,7 +44,7 @@
                         <a class="navbar-brand" id="title-link" href="">
                             <span class="poiret">text</span>
                             <span class="raleway font-heavy"><strong>Builder</strong></span>
-                            <span class="raleway font-small">v1.7</span>
+                            <span class="raleway font-small">v1.9</span>
                         </a>
                     </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -59,9 +59,36 @@
         </header>
         <!--END header -->
 
-        {% block header %}{% endblock %}
-        <!--shared content after header -->
 
+        <!--shared content after header -->
+        <!--START wrapper-->
+        <div id="content-wrap">
+        <!--START ex. ABOUT -->
+        <div id="aboutBox" class="boxes">
+            <i class="fa fa-times closeBox" aria-hidden="true"></i>
+            <div class="box-content">
+                <div class="box-content box-content-grow">
+                    <div class="col-vert">
+                        <p class="raleway font-small sub-heading">learn languages</p>
+                        <p>Build memory and knowledge of collocations and more things here... </p>
+                    </div>
+                    <div class="col-vert">
+                        <p class="raleway font-small sub-heading">build relationships</p>
+                        <p>Think about how texts are put together by focusing on nouns and their prepositions.</p>
+                    </div>
+                    <div class="col-vert">
+                        <p class="raleway font-small sub-heading">practice for exams</p>
+                        <p>Build your own texts to practice Use of English part 2.</p>
+                    </div>
+                </div>
+                <div class="col-bottom-right">
+                    <span class="raleway font-small">an open source project</span>
+                    <a href=""><i class="fa fa-github" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+        <!--END about -->
+        {% block header %}{% endblock %}
         {% block body %}{% endblock %}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"

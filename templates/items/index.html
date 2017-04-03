@@ -1,9 +1,8 @@
 {% extends 'layouts/master.html' %}
-{% block header %}{% endblock %}
+{% block header %}
 
-    {% block body %}
-    <!--START wrapper-->
-    <div id="content-wrap">
+
+
 
         <!--START ex. LOGIN -->
         <div id="loginForm" class="boxes">
@@ -35,32 +34,8 @@
                 </form>
             </div>
         </div><!--end REGISTER-->
-
-        <!--START ex. ABOUT -->
-        <div id="aboutBox" class="boxes">
-            <i class="fa fa-times closeBox" aria-hidden="true"></i>
-            <div class="box-content">
-                <div class="box-content box-content-grow">
-                    <div class="col-vert">
-                        <p class="raleway font-small sub-heading">learn languages</p>
-                        <p>Build memory and knowledge of collocations and more things here... </p>
-                    </div>
-                    <div class="col-vert">
-                        <p class="raleway font-small sub-heading">build relationships</p>
-                        <p>Think about how texts are put together by focusing on nouns and their prepositions.</p>
-                    </div>
-                    <div class="col-vert">
-                        <p class="raleway font-small sub-heading">practice for exams</p>
-                        <p>Build your own texts to practice Use of English part 2.</p>
-                    </div>
-                </div>
-                <div class="col-bottom-right">
-                    <span class="raleway font-small">an open source project</span>
-                    <a href=""><i class="fa fa-github" aria-hidden="true"></i></a>
-                </div>
-            </div>
-        </div>
-        <!--END about -->
+    {% endblock %}
+    {% block body %}
 
 
         <!--START 1. INPUT -->

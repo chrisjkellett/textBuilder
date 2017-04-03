@@ -1,35 +1,6 @@
 {% extends 'layouts/master.html' %}
-{% block header %}{% endblock %}
+{% block header %}
 
-    {% block body %}
-    <!--START wrapper-->
-    <div id="content-wrap">
-
-        <!--START ex. ABOUT -->
-        <div id="aboutBox" class="boxes">
-            <i class="fa fa-times closeBox" aria-hidden="true"></i>
-            <div class="box-content">
-                <div class="box-content box-content-grow">
-                    <div class="col-vert">
-                        <p class="raleway font-small sub-heading">learn languages</p>
-                        <p>Build memory and knowledge of collocations and more things here... </p>
-                    </div>
-                    <div class="col-vert">
-                        <p class="raleway font-small sub-heading">build relationships</p>
-                        <p>Think about how texts are put together by focusing on nouns and their prepositions.</p>
-                    </div>
-                    <div class="col-vert">
-                        <p class="raleway font-small sub-heading">practice for exams</p>
-                        <p>Build your own texts to practice Use of English part 2.</p>
-                    </div>
-                </div>
-                <div class="col-bottom-right">
-                    <span class="raleway font-small">an open source project</span>
-                    <a href=""><i class="fa fa-github" aria-hidden="true"></i></a>
-                </div>
-            </div>
-        </div>
-        <!--END about -->
 
         <!--START ex. savedfiles -->
         <div id="savedFiles" class="boxes">
@@ -38,7 +9,7 @@
                 <div class="col-vert">
                     {% if user_texts %}
                     <p class="raleway font-small sub-heading">saved files</p>
-                        <ol class="raleway font-small">
+                        <ol class="raleway font-lighter">
                     {% for text in user_texts %}
                             <li><a href="">{{ text.title }}</a></li>
                     {% endfor %}
@@ -51,6 +22,9 @@
         </div>
         <!--END toolbox -->
 
+{% endblock %}
+
+{% block body %}
 
         <!--START 1. INPUT -->
         <div id="holdsForm" class="form-group">
