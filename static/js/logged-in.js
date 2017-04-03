@@ -3,6 +3,7 @@ var savedFiles = document.querySelector('#savedFiles');
 var saveFileEvent = document.querySelector('#saveFileEvent');
 var saveBtn = document.querySelector('#submitBtn4');
 var add_Title = document.querySelector('#addTitle');
+var setHiddenTextArea = document.querySelector('#textAreaHidden');
 
 //title for save
 saveBtn.addEventListener('click', function(){
@@ -31,3 +32,4 @@ var removeListeners = function(){
     aboutBox.style.display = 'none';
     savedFiles.style.display = 'none';
 };
+

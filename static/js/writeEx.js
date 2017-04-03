@@ -23,7 +23,10 @@ var setRandomGaps = function(){
 var writetoPage = function(){
     holdsForm.style.display = 'none';
     clozeEx.style.display = 'block';
-    var setTextAreaValue = document.querySelector('#textAreaHidden').value = sText
+    setHiddenTextArea = document.querySelector('#textAreaHidden');
+    if (setHiddenTextArea != null){
+    setHiddenTextArea.value = sText;
+    }
     for(var i = 0; i < lTextLength; i++) {
         if(lTextB[i] != 'Qx'){
             holdsGaps.innerHTML += `<span id="w${i}" class="myWord">${lTextB[i]}</span> `;
