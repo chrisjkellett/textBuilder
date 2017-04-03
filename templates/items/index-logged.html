@@ -1,40 +1,5 @@
 {% extends 'layouts/master.html' %}
-{% block header %}
-<script src="https://use.fontawesome.com/b780aadc2d.js"></script>
-<div class="container fully">
-    <div class="wrapper">
-        <div class="divider"></div>
-    </div>
-
-    <!--START HEADER -->
-    <header>
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" id="title-link" href="">
-                        <span class="poiret">text</span>
-                        <span class="raleway font-heavy"><strong>Builder</strong></span>
-                        <span class="raleway font-small">v1.7</span>
-                    </a>
-                </div>
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right raleway font-small">
-                        <li><div id="saveFileEvent" class="nav-link style-link">saved files</div></li>
-                        <li><div id="aboutEvent" class="nav-link style-link">about</div></li>
-                        <li><div id="logoutEvent" class="nav-link style-link"><a href="{{ url_for('index') }}" class="style-link">logout</a></div></li>
-                    </ul>
-                </div>
-            </div>
-    </header>
-    <!--END header -->
-    {% endblock %}
+{% block header %}{% endblock %}
 
     {% block body %}
     <!--START wrapper-->
