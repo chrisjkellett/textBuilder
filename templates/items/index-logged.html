@@ -1,5 +1,5 @@
 {% extends 'layouts/master.html' %}
-{% block body %}
+{% block header %}
 <script src="https://use.fontawesome.com/b780aadc2d.js"></script>
 <div class="container fully">
     <div class="wrapper">
@@ -34,8 +34,9 @@
             </div>
     </header>
     <!--END header -->
+    {% endblock %}
 
-
+    {% block body %}
     <!--START wrapper-->
     <div id="content-wrap">
 
