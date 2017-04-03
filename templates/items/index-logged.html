@@ -89,7 +89,7 @@
         <!--START 1. INPUT -->
         <div id="holdsForm" class="form-group">
             <p class="raleway font-small sub-heading">Add your text (10 - 250 words)</p>
-            <textarea id="textArea"></textarea>
+            <textarea id="textArea" class="textArea"></textarea>
             <form class="form-inline">
                 <select form="setLevel" class="form-control mySelect raleway font-small flex-btn" id="setLevel" name="level">
                     <option value="easy">easy</option>
@@ -115,15 +115,19 @@
             <p class="raleway font-small sub-heading">Check your answers</p>
             <div id="holdsAns"></div>
             <div id="analysis"></div><br>
-            <button class="btn btn-default flex-btn" id="submitBtn5">Repeat exercise</button>
-            <button class="btn btn-default flex-btn" id="submitBtn3">New exercise</button>
-            <a href=""><button class="btn btn-default flex-btn disabled">Save exercise</button></a>
-            <div id="addTitle" class="titlebox">
-                <div class="btn-wrapper">
-                {{ text_form.csrf_token }}
-                {{ text_form.user_text (id="textAreaHidden", class="textArea") }}
-                {{ text_form.title.label (class="raleway font-small") }}: {{ text_form.title(class="loginForm", maxlength="32") }}
-                {{ text_form.save (value="Save text", class="btn btn-default") }}
+            <div class="btn-container">
+                <button class="btn btn-default flex-btn" id="submitBtn5">Repeat exercise</button>
+                <button class="btn btn-default flex-btn" id="submitBtn3">New exercise</button>
+                <a href=""><button class="btn btn-default flex-btn disabled">Save exercise</button></a>
+                <div id="addTitle" class="titlebox">
+                    <div class="btn-wrapper">
+                        <form method="post" name="savetext">
+                            {{ text_form.csrf_token }}
+                            {{ text_form.user_text (id="textAreaHidden", class="textArea") }}
+                            {{ text_form.title.label (class="raleway font-small") }}: {{ text_form.title(class="loginForm", maxlength="32") }}
+                            {{ text_form.save (value="Save text", class="btn btn-default") }}
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
