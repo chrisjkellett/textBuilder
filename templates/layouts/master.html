@@ -89,7 +89,32 @@
         </div>
         <!--END about -->
         {% block header %}{% endblock %}
-        {% block body %}{% endblock %}
+                 <!--START 1. INPUT -->
+                <div id="holdsForm" class="form-group">
+                    <p class="raleway font-small sub-heading">Add your text (10 - 250 words)</p>
+                    <textarea id="textArea" class="textArea"></textarea>
+                    <form class="form-inline">
+                        <select form="setLevel" class="form-control mySelect raleway font-small flex-btn" id="setLevel" name="level">
+                            <option value="easy">easy</option>
+                            <option value="intermediate">intermediate</option>
+                            <option value="hard">hard</option>
+                        </select>
+                    </form>
+                    <button class="btn btn-default flex-btn" id="submitBtn">Submit</button>
+                    <span id="errorMessage">You must add a text of between 10 and 200 words.</span>
+                </div><!--END 1 INPUT -->
+
+                <!--START 2. EX -->
+                <div class="container" id="clozeEx">
+                    <p class="raleway font-small sub-heading">Complete the gaps</p>
+                    <div id="holdsGaps"></div>
+                    <button class="btn btn-default flex-btn" id="submitBtn2">Compare against original</button>
+                </div>
+                <!--END 2. EX -->
+                {% block body %}{% endblock %}
+            </div>
+        </div><!--END WRAPPER -->
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

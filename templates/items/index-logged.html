@@ -1,55 +1,27 @@
 {% extends 'layouts/master.html' %}
 {% block header %}
-
-
-        <!--START ex. savedfiles -->
-        <div id="savedFiles" class="boxes">
-            <i class="fa fa-times closeBox" aria-hidden="true"></i>
-            <div class="box-content box-content-grow">
-                <div class="col-vert">
-                    {% if user_texts %}
-                    <p class="raleway font-small sub-heading">saved files</p>
-                        <ol class="raleway font-lighter">
-                    {% for text in user_texts %}
-                            <li><a href="">{{ text.title }}</a></li>
-                    {% endfor %}
-                        </ol>
-                    {% else %}
-                    <p class="raleway font-small sub-heading">no saved files</p>
-                    {% endif %}
-                </div>
+    <!--START ex. savedfiles -->
+    <div id="savedFiles" class="boxes">
+        <i class="fa fa-times closeBox" aria-hidden="true"></i>
+        <div class="box-content box-content-grow">
+            <div class="col-vert">
+                {% if user_texts %}
+                <p class="raleway font-small sub-heading">saved files</p>
+                    <ol class="raleway font-lighter">
+                {% for text in user_texts %}
+                        <li><a href="">{{ text.title }}</a></li>
+                {% endfor %}
+                    </ol>
+                {% else %}
+                <p class="raleway font-small sub-heading">no saved files</p>
+                {% endif %}
             </div>
         </div>
-        <!--END toolbox -->
-
+    </div>
+    <!--END savedfiles -->
 {% endblock %}
 
 {% block body %}
-
-        <!--START 1. INPUT -->
-        <div id="holdsForm" class="form-group">
-            <p class="raleway font-small sub-heading">Add your text (10 - 250 words)</p>
-            <textarea id="textArea" class="textArea"></textarea>
-            <form class="form-inline">
-                <select form="setLevel" class="form-control mySelect raleway font-small flex-btn" id="setLevel" name="level">
-                    <option value="easy">easy</option>
-                    <option value="intermediate">intermediate</option>
-                    <option value="hard">hard</option>
-                </select>
-            </form>
-            <button class="btn btn-default flex-btn" id="submitBtn">Submit</button>
-            <span id="errorMessage">You must add a text of between 10 and 200 words.</span>
-        </div><!--END 1 INPUT -->
-
-        <!--START 2. EX -->
-        <div class="container" id="clozeEx">
-            <p class="raleway font-small sub-heading">Complete the gaps</p>
-            <div id="holdsGaps"></div>
-            <button class="btn btn-default flex-btn" id="submitBtn2">Compare against original</button>
-        </div>
-        <!--END 2. EX -->
-
-
         <!--START 3. ANS -->
         <div class="container" id="clozeAns">
             <p class="raleway font-small sub-heading">Check your answers</p>
@@ -58,7 +30,7 @@
             <div class="btn-container">
                 <button class="btn btn-default flex-btn" id="submitBtn5">Repeat exercise</button>
                 <button class="btn btn-default flex-btn" id="submitBtn3">New exercise</button>
-                <a href=""><button class="btn btn-default flex-btn disabled">Save exercise</button></a>
+                <button class="btn btn-default flex-btn" id="submitBtn4">Save exercise</button>
                 <div id="addTitle" class="titlebox">
                     <div class="btn-wrapper">
                         <form method="post" name="savetext">
@@ -72,19 +44,6 @@
             </div>
         </div>
         <!--END 3. ANS -->
-
-    </div>
-
-</div><!--END WRAPPER -->
-
-<!--START FOOTER
-<div class="container">
-     <div class="wrapper">
-         <div class="divider-footer">
-            <div class="right-foot raleway font-small">You are logged in as cjkellett</div>
-        </div>
-    </div>
-</div>END FOOTER-->
 {% endblock %}
 {% block javascript %}
     <script src="{{ url_for('static', filename='js/logged-in.js') }}"></script>

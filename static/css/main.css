@@ -122,9 +122,10 @@ text-decoration:none;
     margin:10px 0px 5px;
 }
 
-#textAreaHidden{
+#textAreaHidden, #addTitle{
     display:none;
 }
+
 
 #clozeEx{
     display:none;

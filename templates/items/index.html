@@ -1,90 +1,51 @@
 {% extends 'layouts/master.html' %}
 {% block header %}
-
-
-
-
-        <!--START ex. LOGIN -->
-        <div id="loginForm" class="boxes">
-            <i class="fa fa-times closeBox" aria-hidden="true"></i>
-            <div class="form-content">
-                <form method="post" action="" name="login">
-                    {{ form.csrf_token }}
-                    {{ form.email.label (class="raleway font-small") }}: {{ form.email(class="loginForm") }}
-                    {{ form.password.label (class="raleway font-small") }}: {{ form.password(class="loginForm") }}
-                    {{ form.login (value="Login", class="btn btn-default") }}
-                    | <span class="raleway font-small fakeA" id="registerEvent">register</span>
-                </form>
-
-            </div>
-        </div>
-        <!--END login -->
-
-        <!--START ex. REGISTER-->
-        <div id="registerForm" class="boxes">
-            <i class="fa fa-times closeBox" aria-hidden="true"></i>
-            <div class="form-content">
-                <form method="post" action="" name="register">
-                    {{ regform.csrf_token }}
-                    {{ regform.email.label (class="raleway font-small") }}: {{ regform.email(class="loginForm") }}
-                    {{ regform.password.label (class="raleway font-small") }}: {{ regform.password(class="loginForm") }}
-                    {{ regform.password2.label (class="raleway font-small") }}: {{ regform.password2(class="loginForm") }}
-                    {{ regform.register (value="Register", class="btn btn-default") }}
-                    | <span class="raleway font-small fakeA" id="loginEvent2">login</span>
-                </form>
-            </div>
-        </div><!--end REGISTER-->
-    {% endblock %}
-    {% block body %}
-
-
-        <!--START 1. INPUT -->
-        <div id="holdsForm" class="form-group">
-            <p class="raleway font-small sub-heading">Add your text (10 - 250 words)</p>
-            <textarea id="textArea" class="textArea"></textarea>
-            <form class="form-inline">
-                <select form="setLevel" class="form-control mySelect raleway font-small flex-btn" id="setLevel" name="level">
-                    <option value="easy">easy</option>
-                    <option value="intermediate">intermediate</option>
-                    <option value="hard">hard</option>
-                </select>
+    <!--START ex. LOGIN -->
+    <div id="loginForm" class="boxes">
+        <i class="fa fa-times closeBox" aria-hidden="true"></i>
+        <div class="form-content">
+            <form method="post" action="" name="login">
+                {{ form.csrf_token }}
+                {{ form.email.label (class="raleway font-small") }}: {{ form.email(class="loginForm") }}
+                {{ form.password.label (class="raleway font-small") }}: {{ form.password(class="loginForm") }}
+                {{ form.login (value="Login", class="btn btn-default") }}
+                | <span class="raleway font-small fakeA" id="registerEvent">register</span>
             </form>
-            <button class="btn btn-default flex-btn" id="submitBtn">Submit</button>
-            <span id="errorMessage">You must add a text of between 10 and 200 words.</span>
-        </div><!--END 1 INPUT -->
 
-        <!--START 2. EX -->
-        <div class="container" id="clozeEx">
-            <p class="raleway font-small sub-heading">Complete the gaps</p>
-            <div id="holdsGaps"></div>
-            <button class="btn btn-default flex-btn" id="submitBtn2">Compare against original</button>
-        </div>
-        <!--END 2. EX -->
-
-
-        <!--START 3. ANS -->
-        <div class="container" id="clozeAns">
-            <p class="raleway font-small sub-heading">Check your answers</p>
-            <div id="holdsAns"></div>
-            <div id="analysis"></div><br>
-            <button class="btn btn-default flex-btn" id="submitBtn5">Repeat exercise</button>
-            <button class="btn btn-default flex-btn" id="submitBtn3">New exercise</button>
-            <button class="btn btn-default flex-btn" id="submitBtn4" disabled>Save exercise</button>
-        </div>
-        <!--END 3. ANS -->
-
-    </div>
-
-</div><!--END WRAPPER -->
-
-<!--START FOOTER
-<div class="container">
-     <div class="wrapper">
-         <div class="divider-footer">
-            <div class="right-foot raleway font-small">You are logged in as cjkellett</div>
         </div>
     </div>
-</div>END FOOTER-->
+    <!--END login -->
+
+    <!--START ex. REGISTER-->
+    <div id="registerForm" class="boxes">
+        <i class="fa fa-times closeBox" aria-hidden="true"></i>
+        <div class="form-content">
+            <form method="post" action="" name="register">
+                {{ regform.csrf_token }}
+                {{ regform.email.label (class="raleway font-small") }}: {{ regform.email(class="loginForm") }}
+                {{ regform.password.label (class="raleway font-small") }}: {{ regform.password(class="loginForm") }}
+                {{ regform.password2.label (class="raleway font-small") }}: {{ regform.password2(class="loginForm") }}
+                {{ regform.register (value="Register", class="btn btn-default") }}
+                | <span class="raleway font-small fakeA" id="loginEvent2">login</span>
+            </form>
+        </div>
+    </div>
+    <!--end REGISTER-->
+{% endblock %}
+
+
+
+{% block body %}
+    <!--START 3. ANS -->
+    <div class="container" id="clozeAns">
+        <p class="raleway font-small sub-heading">Check your answers</p>
+        <div id="holdsAns"></div>
+        <div id="analysis"></div><br>
+        <button class="btn btn-default flex-btn" id="submitBtn5">Repeat exercise</button>
+        <button class="btn btn-default flex-btn" id="submitBtn3">New exercise</button>
+        <button class="btn btn-default flex-btn" id="submitBtn4" disabled>Save exercise</button>
+    </div>
+    <!--END 3. ANS -->
 {% endblock %}
 {% block javascript %}
     <script src="{{ url_for('static', filename='js/index.js') }}"></script>
