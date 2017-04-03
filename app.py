@@ -141,7 +141,7 @@ def confirm(token):
 @app.route('/<int:id>', methods=['GET', 'POST'])
 def save_text(id):
     my_text = Savetext.query.filter_by(id=id).first()
-    return render_template('items/ex-view.html', text=my_text)
+    return render_template('items/builder.html', text=my_text)
 
 
 if __name__ == "__main__":

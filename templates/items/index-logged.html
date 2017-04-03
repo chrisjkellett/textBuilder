@@ -9,7 +9,7 @@
                 <p class="raleway font-small sub-heading">saved files</p>
                     <ol class="raleway font-lighter">
                 {% for text in user_texts %}
-                        <li><a href="">{{ text.title }}</a></li>
+                        <li><a href="{{ url_for('save_text', id=text.id) }}">{{ text.title }}</a></li>
                 {% endfor %}
                     </ol>
                 {% else %}
