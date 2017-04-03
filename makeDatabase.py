@@ -2,6 +2,7 @@ import hashlib
 from models import User, Savetext, db
 db.drop_all()
 db.create_all()
+from datetime import datetime
 
 
 # create admin
@@ -21,7 +22,9 @@ Police have arrested at least 600 people they say were involved in the mob viole
 
 Resentment towards Africans, thousands of whom study in Indian universities, has simmered in India in the past few years, fuelled partly by cultural differences and the involvement of a small proportion of people from the continent in the Delhi drug trade."""
 
+getDate = datetime.utcnow()
 sample_text = Savetext('Indian targets muslims', sText, 1)
+sample_text.timestamp = getDate
 db.session.add(sample_text)
 db.session.commit()
 

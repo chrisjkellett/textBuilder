@@ -118,6 +118,12 @@
             <button class="btn btn-default flex-btn" id="submitBtn5">Repeat exercise</button>
             <button class="btn btn-default flex-btn" id="submitBtn3">New exercise</button>
             <a href=""><button class="btn btn-default flex-btn disabled">Save exercise</button></a>
+            <div id="addTitle" class="titlebox">
+                <div class="btn-wrapper">
+                {{ text_form.title.label (class="raleway font-small") }}: {{ text_form.title(class="loginForm", maxlength="32") }}
+                {{ text_form.save (value="Save text", class="btn btn-default") }}
+                </div>
+            </div>
         </div>
         <!--END 3. ANS -->
 

@@ -6,6 +6,7 @@ from wtforms.validators import DataRequired, Email, Length, EqualTo
 
 #message variables
 noEmailMessage = Markup('Add your <strong>email address</strong>.')
+noTitleMessage = Markup('Add a <strong>title</strong>.')
 formatEmailMessage = Markup('Incorrect format for <strong>email address</strong>.')
 passwordMessage = Markup('Add your <strong>password</strong>.')
 passwordLengthMessage = Markup('Passwords must contain at least <strong>6 characters</strong>.')
@@ -29,5 +30,7 @@ class RegisterForm(FlaskForm):
     register = SubmitField('register')
 
 
-class GetText(FlaskForm):
+class GetTextForm(FlaskForm):
+    title = StringField('text title', validators=[DataRequired(noTitleMessage)])
     user_text = TextAreaField('add text', validators=[DataRequired('Please add your text')])
+    save = SubmitField('save text')

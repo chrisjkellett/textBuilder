@@ -32,13 +32,13 @@ class User(db.Model):
 class Savetext(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(32))
-    gettext = db.Column(db.String(5000))
+    user_text = db.Column(db.String(5000))
     id_user = db.Column(db.ForeignKey('user.id'))
-    timestamp = db.Column(db.Date)
+    timestamp = db.Column(db.DateTime)
 
-    def __init__(self, title, gettext, id_user, timestamp ):
+    def __init__(self, title, user_text, id_user):
         self.title = title
-        self.gettext = gettext
+        self.user_text = user_text
         self.id_user = id_user
         self.timestamp = datetime.utcnow()
 
