@@ -15,6 +15,7 @@ var analysisDiv = document.querySelector('#analysis');
 var registerForm = document.querySelector('#registerForm');
 var aboutBox = document.querySelector('#aboutBox');
 var closeBox = document.querySelectorAll('.closeBox');
+var userText = document.querySelector('#userText');
 var myInputs; 
 
 //set variables

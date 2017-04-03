@@ -22,11 +22,9 @@
         {% endif %}
         {% endwith %}
 
-
-        <script src="https://use.fontawesome.com/b780aadc2d.js"></script>
         <div class="container fully">
         <div class="wrapper">
-        <div class="divider"></div>
+            <div class="divider"></div>
         </div>
 
         <!--START HEADER -->
@@ -41,7 +39,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" id="title-link" href="">
+                        <a class="navbar-brand" id="title-link" href="{{ url_for('index') }}">
                             <span class="poiret">text</span>
                             <span class="raleway font-heavy"><strong>Builder</strong></span>
                             <span class="raleway font-small">v1.9</span>
@@ -50,17 +48,15 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav navbar-right raleway font-small">
                             <li><div id="aboutEvent" class="nav-link style-link">about</div></li>
-                            {% if session['user'] %}<li><div id="saveFileEvent" class="nav-link style-link">saved files</div></li>{% endif %}
-                            {% if not session['user'] %}<li><div id="loginEvent" class="nav-link style-link">login</div></li>{% endif %}
-                            {% if session['user'] %}<li><div id="logoutEvent" class="nav-link style-link"><a href="{{ url_for('log_out') }}" class="style-link">logout</a></div></li>{% endif %}
+                            {% if session['user'] and not text %}<li><div id="saveFileEvent" class="nav-link style-link">saved files</div></li>{% endif %}
+                            {% if not session['user'] and not text%}<li><div id="loginEvent" class="nav-link style-link">login</div></li>{% endif %}
+                            {% if session['user'] and not text%}<li><div id="logoutEvent" class="nav-link style-link"><a href="{{ url_for('log_out') }}" class="style-link">logout</a></div></li>{% endif %}
                         </ul>
                     </div>
                 </div>
         </header>
         <!--END header -->
 
-
-        <!--shared content after header -->
         <!--START wrapper-->
         <div id="content-wrap">
         <!--START ex. ABOUT -->
@@ -89,28 +85,7 @@
         </div>
         <!--END about -->
         {% block header %}{% endblock %}
-                 <!--START 1. INPUT -->
-                <div id="holdsForm" class="form-group">
-                    <p class="raleway font-small sub-heading">Add your text (10 - 250 words)</p>
-                    <textarea id="textArea" class="textArea"></textarea>
-                    <form class="form-inline">
-                        <select form="setLevel" class="form-control mySelect raleway font-small flex-btn" id="setLevel" name="level">
-                            <option value="easy">easy</option>
-                            <option value="intermediate">intermediate</option>
-                            <option value="hard">hard</option>
-                        </select>
-                    </form>
-                    <button class="btn btn-default flex-btn" id="submitBtn">Submit</button>
-                    <span id="errorMessage">You must add a text of between 10 and 200 words.</span>
-                </div><!--END 1 INPUT -->
 
-                <!--START 2. EX -->
-                <div class="container" id="clozeEx">
-                    <p class="raleway font-small sub-heading">Complete the gaps</p>
-                    <div id="holdsGaps"></div>
-                    <button class="btn btn-default flex-btn" id="submitBtn2">Compare against original</button>
-                </div>
-                <!--END 2. EX -->
                 {% block body %}{% endblock %}
             </div>
         </div><!--END WRAPPER -->

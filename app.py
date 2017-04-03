@@ -116,7 +116,7 @@ def logged_in(username):
             db.session.rollback()
             flash('error', 'danger')
         return redirect(url_for('logged_in', username=username))
-    return render_template('items/index-logged.html', user_texts=user_texts, text_form=text_form)
+    return render_template('items/index-logged.html', user_texts=user_texts, text_form=text_form, username=username)
 
 
 @app.route('/logout')

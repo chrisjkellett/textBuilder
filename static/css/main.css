@@ -171,6 +171,10 @@ text-decoration:none;
     display:inline-block;
 }
 
+#userText{
+    line-height:2.5;
+}
+
 /*buttons and forms*/
 .btn-default{
     border-radius:0px;

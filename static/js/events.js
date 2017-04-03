@@ -1,6 +1,10 @@
 
 submitBtn.addEventListener('click', function(){
-    sText = getTextArea.value;
+    if (userText != null){
+        sText = userText.textContent;
+    }else{
+        sText = getTextArea.value;
+    };
     selectedLevel = document.querySelector('#setLevel').value;
     getLevel();
     lTextA = sText.split(" ");
@@ -24,11 +28,6 @@ submitBtn2.addEventListener('click', function(){
 });
 
 
-submitBtn3.addEventListener('click', function(){
-    location.reload();
-});
-
-
 submitBtn5.addEventListener('click', function(){
     resetVariables();
     clozeAns.style.display = 'none';
@@ -48,9 +47,11 @@ aboutEvent.addEventListener('click', function(){
 });
 
 
-getTextArea.addEventListener('click', function(){
-    removeListeners();
-});
+if (getTextArea != null){
+    getTextArea.addEventListener('click', function(){
+        removeListeners();
+    });
+};
 
 //set listeners for close boxes
 getCloseBtns();
