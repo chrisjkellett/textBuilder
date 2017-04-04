@@ -8,8 +8,11 @@
                 {% if user_texts %}
                 <p class="raleway font-small sub-heading">saved files</p>
                     <ol class="raleway font-lighter">
-                {% for text in user_texts %}
-                        <li><a href="{{ url_for('save_text', id=text.id) }}", target="_blank">{{ text.title }}</a></li>
+                {% for text in user_texts[:5] %}
+                        <li><a href="{{ url_for('save_text', id=text.id) }}", target="_blank">{{ text.title }}</a>
+                        <span class="glyphicon glyphicon-remove icon-style"></span>
+                        </li>
+                        <p class>{{ text.user_text[:32] }}..</p>
                 {% endfor %}
                     </ol>
                 {% else %}

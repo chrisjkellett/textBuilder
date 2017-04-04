@@ -9,6 +9,7 @@ from flask import (Flask,
 from flask_mail import Mail, Message
 from forms import LoginForm, RegisterForm, GetTextForm
 from models import User, Savetext, db
+from functools import wraps
 import hashlib
 import configparser
 
@@ -27,6 +28,16 @@ app.config['MAIL_USERNAME'] = config['MAIL']['MAIL_USERNAME']
 app.config['MAIL_PASSWORD'] = config['MAIL']['MAIL_PASSWORD']
 app.config['MAIL_DEBUG'] = False
 mail = Mail(app)
+
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'user' not in session:
+            session.clear()
+            return redirect(url_for('index'))
+        return f(*args, **kwargs)
+    return decorated_function
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -100,6 +111,7 @@ def index():
 
 
 @app.route('/<username>', methods=['GET', 'POST'])
+@login_required
 def logged_in(username):
     text_form = GetTextForm(request.form)
     user_texts = Savetext.query.filter_by(id_user=session['user']).all()
