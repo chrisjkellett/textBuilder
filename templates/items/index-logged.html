@@ -10,9 +10,12 @@
                     <ol class="raleway font-lighter">
                 {% for text in user_texts[:5] %}
                         <li><a href="{{ url_for('save_text', id=text.id) }}", target="_blank">{{ text.title }}</a>
-                        <span class="glyphicon glyphicon-remove icon-style"></span>
+                        <a href="{{ url_for('delete_text', id=text.id) }}">
+                            <span class="glyphicon glyphicon-remove icon-style"></span>
+                        </a>
                         </li>
-                        <p class>{{ text.user_text[:32] }}..</p>
+                        <p class>{{ text.user_text[:32] }}...</p>
+                        <p></p>
                 {% endfor %}
                     </ol>
                 {% else %}

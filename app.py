@@ -116,17 +116,24 @@ def logged_in(username):
     text_form = GetTextForm(request.form)
     user_texts = Savetext.query.filter_by(id_user=session['user']).all()
     if request.method == 'POST':
-        title = text_form.title.data
-        user_text = text_form.user_text.data
-        my_text = Savetext(title, user_text, session['user'])
-        db.session.add(my_text)
-        try:
-            db.session.commit()
-            message = Markup(f'Saved <strong>{title}</strong>.')
-            flash(message, 'success')
-        except:
-            db.session.rollback()
-            flash('error', 'danger')
+        if text_form.validate():
+            title = text_form.title.data
+            user_text = text_form.user_text.data
+            my_text = Savetext(title, user_text, session['user'])
+            db.session.add(my_text)
+            try:
+                db.session.commit()
+                message = Markup(f'Saved <strong>{title}</strong>.')
+                flash(message, 'success')
+            except:
+                db.session.rollback()
+                flash('Error: Not saved', 'danger')
+            return redirect(url_for('logged_in', username=username))
+        else:
+            errors = text_form.errors.items()
+            for field, messages in errors:
+                for message in messages:
+                    flash(message, 'danger')
         return redirect(url_for('logged_in', username=username))
     return render_template('items/index-logged.html', user_texts=user_texts, text_form=text_form, username=username)
 
@@ -147,6 +154,7 @@ def confirm(token):
         flash(message, 'success')
     except:
         db.session.rollback()
+        flash('Error: Not confirmed', 'danger')
     return redirect(url_for('index'))
 
 
@@ -154,6 +162,21 @@ def confirm(token):
 def save_text(id):
     my_text = Savetext.query.filter_by(id=id).first()
     return render_template('items/builder.html', text=my_text)
+
+
+@app.route('/delete/<int:id>')
+def delete_text(id):
+    text_delete = Savetext.query.filter_by(id=id).first()
+    my_user = User.query.filter_by(id=text_delete.id_user).first()
+    db.session.delete(text_delete)
+    try:
+        db.session.commit()
+        message = Markup(f'Deleted <strong>{text_delete.title}</strong>.')
+        flash(message, 'success')
+    except:
+        db.session.rollback()
+        flash('Error: Not confirmed', 'danger')
+    return redirect(url_for('logged_in', username=my_user.username  ))
 
 
 if __name__ == "__main__":
