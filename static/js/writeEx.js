@@ -53,23 +53,16 @@ var correctEx = function(){
             }else if(lTextA[i] != getInput && getInput == '-'){
                 holdsAns.innerHTML += `<span class="feedback alerty raleway font-small" id="Q${i}"><strong>${lTextA[i]}</strong></span> `;
             }else{
-                holdsAns.innerHTML += `<strike>${getInput}</strike>&nbsp;<span class="feedback dangery raleway font-small" id="Q${i}"><strong>${lTextA[i]}</strong></span>
-                 `;
+                holdsAns.innerHTML += `<strike>${getInput}</strike>&nbsp;<span class="feedback dangery raleway font-small" id="Q${i}"><strong>${lTextA[i]}</strong></span> `;
         };  
     }else{
         holdsAns.innerHTML += `${lTextA[i]} `;
     };
 };
-    var correctAns = document.querySelectorAll('.success').length;
-    correctAnsAll += correctAns;
+    var correctAns = document.querySelectorAll('.successy').length;
     var totalGaps = holdRandomGaps.length;
-    totalGapsAll += totalGaps;
     var percentage = Math.round((correctAns/totalGaps) * 100);
-    percentageAll += percentage;
     analysisDiv.innerHTML = `Score: <strong>${correctAns}/${totalGaps}</strong> (${percentage}%).<br>`
-    if(repeatEx){
-        analysisDiv.innerHTML += `Total: <strong>${correctAnsAll}/${totalGapsAll}</strong> (${percentageAll}%).<br>`
-    };
 };
 
 
