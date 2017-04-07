@@ -26,10 +26,28 @@ saveFileEvent.addEventListener('click', function(){
 });
 
 
-
 //remove listeners
 var removeListeners = function(){
     aboutBox.style.display = 'none';
     savedFiles.style.display = 'none';
 };
 
+var confirmDelete = function(id){
+    spanId = '#delete-' + id.toString();
+    glyphs = document.querySelectorAll('.glyphicon');
+    var x = document.querySelector(spanId);
+    x.style.display = 'block';
+    for (var i=0; i<glyphs.length; i++){
+        glyphs[i].style.display = 'none';
+    };
+};
+
+var cancelDelete = function(id){
+    spanId = '#delete-' + id.toString();
+    glyphs = document.querySelectorAll('.glyphicon');
+    var x = document.querySelector(spanId);
+    x.style.display = 'none';
+    for (var i=0; i<glyphs.length; i++){
+        glyphs[i].style.display = 'block';
+    };
+};

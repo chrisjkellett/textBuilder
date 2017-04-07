@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
         <link rel="shortcut icon" href="{{ url_for('static', filename='img/tb.ico') }}">
-        <title>{% block title %}{% endblock %} | Text Builder </title>
+        <title>Text Builder {% block title %}{% endblock %}</title>
     </head>
 
     <body>
@@ -66,20 +66,18 @@
                 <div class="box-content box-content-grow">
                     <div class="col-vert">
                         <p class="raleway font-small sub-heading">learn languages</p>
-                        <p>Build memory and knowledge of collocations and more things here... </p>
+                        <p>Text builder is a tool for learning languages. Choose a text, read it and try to remember key phrases and words.</p>
                     </div>
                     <div class="col-vert">
-                        <p class="raleway font-small sub-heading">build relationships</p>
-                        <p>Think about how texts are put together by focusing on nouns and their prepositions.</p>
+                        <p class="raleway font-small sub-heading">rebuild the text from memory</p>
+                        <p>Choose from 3 levels of difficulty.  The higher the level the more words will be removed from the text.</p>
                     </div>
                     <div class="col-vert">
-                        <p class="raleway font-small sub-heading">practice for exams</p>
-                        <p>Build your own texts to practice Use of English part 2.</p>
+                        <p class="raleway font-small sub-heading">save and send texts</p>
+                        <p>Teacher? Choose a text and send it to students to read and rebuild.</p>
                     </div>
                 </div>
                 <div class="col-bottom-right">
-                    <span class="raleway font-small">an open source project</span>
-                    <a href=""><i class="fa fa-github" aria-hidden="true"></i></a>
                 </div>
             </div>
         </div>
@@ -90,10 +88,10 @@
             </div>
             <p>For v1.96:</p>
             <ul>
-            <li>limit saves to 10</li>
+            <li>limit saves to 10 ✔ (# validated with jinja 2 to avoid refresh)</li>
             <li>sort out sessions</li>
-            <li>js for about in ex-mode (about toggle)</li>
-            <li>confirm for delete</li>
+            <li>js for about in ex-mode (about toggle) ✔ (added builder.js)</li>
+            <li>confirm for delete ✔ (# javascripted)</li>
             </ul>
         </div><!--END WRAPPER -->
 

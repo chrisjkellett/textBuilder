@@ -1,4 +1,5 @@
 {% extends 'layouts/master.html' %}
+{% block title %}| {{ text.title }}{% endblock %}
 {% block header %}
 {% endblock %}
 
@@ -52,5 +53,5 @@
         <!--END 3. ANS -->
 {% endblock %}
 {% block javascript %}
-    <script src="{{ url_for('static', filename='js/logged-in.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/builder.js') }}"></script>
 {% endblock %}

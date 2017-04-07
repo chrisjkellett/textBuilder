@@ -1,4 +1,5 @@
 {% extends 'layouts/master.html' %}
+{% block title %}| {{ username }}{% endblock %}
 {% block header %}
     <!--START ex. savedfiles -->
     <div id="savedFiles" class="boxes">
@@ -10,9 +11,12 @@
                     <ol class="raleway font-lighter">
                 {% for text in user_texts[:5] %}
                         <li><a href="{{ url_for('save_text', id=text.id) }}", target="_blank">{{ text.title }}</a>
-                        <a href="{{ url_for('delete_text', id=text.id) }}">
-                            <span class="glyphicon glyphicon-remove icon-style"></span>
-                        </a>
+                            <span class="glyphicon glyphicon-remove icon-style" onclick="confirmDelete({{ text.id }})"></span>
+                            <div class="confirmbox" id="delete-{{ text.id }}">
+                            <p>Confirm delete for <strong>{{ text.title }}</strong>?</p>
+                                <a href="{{ url_for('delete_text', id=text.id) }}"><button class="btn btn-default">Delete</button></a>
+                                <button class="btn btn-default" onclick="cancelDelete({{ text.id }})">Cancel</button></a>
+                            </div>
                         </li>
                         <p class>{{ text.user_text[:32] }}...</p>
                         <p></p>
@@ -65,7 +69,12 @@
                             {{ text_form.csrf_token }}
                             {{ text_form.user_text (id="textAreaHidden", class="textArea") }}
                             {{ text_form.title.label (class="raleway font-small") }}: {{ text_form.title(class="loginForm", maxlength="32") }}
+                            {% if user_texts | length < 11 %}
                             {{ text_form.save (value="Save text", class="btn btn-default") }}
+                            {% else %}
+                            {{ text_form.save (value="Save text", class="btn btn-default", disabled=True) }}
+                            <span class="raleway font-small">Users can save up to 10 files only.</span>
+                            {% endif %}
                         </form>
                     </div>
                 </div>

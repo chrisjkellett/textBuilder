@@ -48,3 +48,5 @@ var getCloseBtns = function(){
         });
     };
 };
+
+
