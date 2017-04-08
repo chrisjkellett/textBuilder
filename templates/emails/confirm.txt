@@ -1,0 +1,3 @@
+Hello this is a rendered template.
+
+Here is a useful {{ link }}.

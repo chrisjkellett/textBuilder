@@ -1,6 +1,6 @@
 
 /*imports*/
-@import url('https://fonts.googleapis.com/css?family=Raleway:300,600,800');
+@import url('https://fonts.googleapis.com/css?family=Raleway:500,600,800');
 @import url('https://fonts.googleapis.com/css?family=Poiret+One');
 
 
@@ -92,32 +92,44 @@ header{
     border-top:0;
 }
 
-.nav-link{
+.nav-link, .navbar-nav>li>a{
 margin:15px;
+padding:0;
 }
 
 .style-link{
 cursor:pointer;
+color: inherit;
 }
 
 .style-link:hover{
 color:#A9A9A9;
+text-decoration:none;
 }
 
 
 /*body styles*/
 #content-wrap{
     padding-top:10px;
-    position: relative; 
+    position: relative;
     margin-bottom:45px;
 }
 
-#textArea{
+.textArea{
     width:100%;
     height:100px;
     resize: none;
-    margin:10px 0px 0px;
+    margin:10px 0px 5px;
 }
+
+#addTitle{
+    display:none;
+}
+
+#textAreaHidden{
+    display:none;
+}
+
 
 #clozeEx{
     display:none;
@@ -149,14 +161,18 @@ color:#A9A9A9;
 
 #errorMessage{
     display: none;
-    font-family: Raleway;
+    font-family: Raleway, sans-serif;
     font-size: 14.44px;
-    font-weight:600;  
+    font-weight:600;
 }
 
 .myWord{
     margin:0px 0px 22px 0px;
     display:inline-block;
+}
+
+#userText{
+    line-height:2.5;
 }
 
 /*buttons and forms*/
@@ -192,16 +208,22 @@ select.form-control:focus{
     border-color: #A9A9A9;
 }
 
-.danger{
-    color: seagreen;
+.feedback{
+    border: 1px solid lightgrey;
+    padding: 3px;
+    color: inherit;
 }
 
-.success{
-    color: seagreen;
+.successy{
+    background: #DFF0D8;
+}
+
+.dangery{
+    background: #FFCCCC;
 }
 
 .alerty{
-    color: seagreen;
+    background: #FFFF99;
 }
 
 .not-pad-left{
@@ -232,11 +254,42 @@ padding:2px;
 .boxes{
     border:1px solid #A9A9A9;
     position: absolute;
-    height: 300px;    
+    min-height: 300px;
     background: rgb(238,238,238);
     top:-15px;
     right:0;
     display: none;
+}
+
+.titlebox{
+    border:1px solid #A9A9A9;
+    position: absolute;
+    background: rgb(238,238,238);
+    margin-top:3px;
+    width:100%;
+    margin-bottom:10px;
+}
+
+.confirmbox{
+    border:1px solid #A9A9A9;
+    position: absolute;
+    background: rgb(255,255,255);
+    margin-top:3px;
+    width:100%;
+    margin-bottom:10px;
+    padding:10px;
+    text-align:center;
+    display:none;
+    z-index:1;
+}
+
+.btn-container{
+    position:relative;
+    display:inline-block;
+}
+
+.btn-wrapper{
+    padding:20px 10px;
 }
 
 .box-content{
@@ -251,7 +304,7 @@ padding:2px;
 }
 
 .form-content{
-    padding: 41px 10px;
+    padding: 31px 10px;
 }
 
 .col-bottom-right{
@@ -295,11 +348,15 @@ padding:2px;
   text-decoration: underline;
 }
 
+ol{
+padding-left:15px;
+margin-top:6px;
+}
 
 
 /*FONT STYLES*/
 .raleway{
-    font-family: 'Raleway';
+    font-family: 'Raleway', sans-serif;
     font-size: 32px;
 }
 
@@ -316,35 +373,36 @@ padding:2px;
     font-size: 38px;
 }
 
+.font-tiny{
+    font-size:12px !important;
+}
+
 .font-small{
     font-size: 14.44px;
     font-weight: 600;
+}
+
+.font-lighter{
+    font-size: 14.44px;
+    font-weight: 500;
 }
 
 .grey{
     color:#A9A9A9;
 }
 
-.fa{
-    font-size:20px !important;
+.icon-style{
+font-size:10px;
+color:inherit;
+float:right;
+padding-top:5px;
 }
 
-
-/*footer
-.divider-footer{
-    margin:0;
-    padding:0;
-    width: 100%;
-    position:absolute;
-    bottom:0px;
-    height:30px;
+.icon-style:hover{
+color: grey;
+cursor: pointer;
 }
 
-.right-foot{
-    float:right;
-    border-top:1px solid #A9A9A9;
-    padding:2px;
-}*/
 
 
 /*media and animation*/

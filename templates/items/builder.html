@@ -1,0 +1,57 @@
+{% extends 'layouts/master.html' %}
+{% block title %}| {{ text.title }}{% endblock %}
+{% block header %}
+{% endblock %}
+
+{% block body %}
+   <!--START 1. INPUT -->
+        <div id="holdsForm" class="form-group">
+            <p class="raleway font-small sub-heading">{{ text.title }}</p>
+            <p id="userText">{{ text.user_text }}</p>
+            <form class="form-inline">
+                <select form="setLevel" class="form-control mySelect raleway font-small flex-btn" id="setLevel" name="level">
+                    <option value="easy">easy</option>
+                    <option value="intermediate">intermediate</option>
+                    <option value="hard">hard</option>
+                </select>
+            </form>
+            <button class="btn btn-default flex-btn" id="submitBtn">Submit</button>
+            <span id="errorMessage">You must add a text of between 10 and 200 words.</span>
+        </div><!--END 1 INPUT -->
+
+        <!--START 2. EX -->
+        <div class="container" id="clozeEx">
+            <p class="raleway font-small sub-heading">Complete the gaps</p>
+            <div id="holdsGaps"></div>
+            <button class="btn btn-default flex-btn" id="submitBtn2">Compare against original</button>
+        </div>
+        <!--END 2. EX -->
+        <!--START 3. ANS -->
+        <div class="container" id="clozeAns">
+            <p class="raleway font-small sub-heading">Check your answers</p>
+            <div id="holdsAns"></div>
+            <div id="analysis"></div><br>
+            <div class="btn-container">
+                <button class="btn btn-default flex-btn" id="submitBtn5">Repeat exercise</button>
+                <a href="{{ url_for('log_out') }}"><button class="btn btn-default flex-btn">New exercise</button></a>
+                {% if username %}
+                <button class="btn btn-default flex-btn" id="submitBtn4">Save exercise</button>
+                <div id="addTitle" class="titlebox">
+                    <div class="btn-wrapper">
+                        <form method="post" name="savetext">
+                            {{ text_form.csrf_token }}
+                            {{ text_form.user_text (id="textAreaHidden", class="textArea") }}
+                            {{ text_form.title.label (class="raleway font-small") }}: {{ text_form.title(class="loginForm", maxlength="32") }}
+                            {{ text_form.save (value="Save text", class="btn btn-default") }}
+                        </form>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        </div>
+        <!--END 3. ANS -->
+{% endblock %}
+{% block javascript %}
+    <script src="{{ url_for('static', filename='js/builder.js') }}"></script>
+{% endblock %}

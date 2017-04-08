@@ -1,0 +1,87 @@
+{% extends 'layouts/master.html' %}
+{% block title %}| {{ username }}{% endblock %}
+{% block header %}
+    <!--START ex. savedfiles -->
+    <div id="savedFiles" class="boxes">
+        <i class="fa fa-times closeBox" aria-hidden="true"></i>
+        <div class="box-content box-content-grow">
+            <div class="col-vert">
+                {% if user_texts %}
+                <p class="raleway font-small sub-heading">saved files</p>
+                    <ol class="raleway font-lighter">
+                {% for text in user_texts[:5] %}
+                        <li><a href="{{ url_for('save_text', id=text.id) }}", target="_blank">{{ text.title }}</a>
+                            <span class="glyphicon glyphicon-remove icon-style" onclick="confirmDelete({{ text.id }})"></span>
+                            <div class="confirmbox" id="delete-{{ text.id }}">
+                            <p>Confirm delete for <strong>{{ text.title }}</strong>?</p>
+                                <a href="{{ url_for('delete_text', id=text.id) }}"><button class="btn btn-default">Delete</button></a>
+                                <button class="btn btn-default" onclick="cancelDelete({{ text.id }})">Cancel</button></a>
+                            </div>
+                        </li>
+                        <p class>{{ text.user_text[:32] }}...</p>
+                        <p></p>
+                {% endfor %}
+                    </ol>
+                {% else %}
+                <p class="raleway font-small sub-heading">no saved files</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <!--END savedfiles -->
+{% endblock %}
+
+{% block body %}
+   <!--START 1. INPUT -->
+        <div id="holdsForm" class="form-group">
+            <p class="raleway font-small sub-heading">Add your text (10 - 250 words)</p>
+            <textarea id="textArea" class="textArea"></textarea>
+            <form class="form-inline">
+                <select form="setLevel" class="form-control mySelect raleway font-small flex-btn" id="setLevel" name="level">
+                    <option value="easy">easy</option>
+                    <option value="intermediate">intermediate</option>
+                    <option value="hard">hard</option>
+                </select>
+            </form>
+            <button class="btn btn-default flex-btn" id="submitBtn">Submit</button>
+            <span id="errorMessage">You must add a text of between 10 and 200 words.</span>
+        </div><!--END 1 INPUT -->
+
+        <!--START 2. EX -->
+        <div class="container" id="clozeEx">
+            <p class="raleway font-small sub-heading">Complete the gaps</p>
+            <div id="holdsGaps"></div>
+            <button class="btn btn-default flex-btn" id="submitBtn2">Compare against original</button>
+        </div>
+        <!--END 2. EX -->
+        <!--START 3. ANS -->
+        <div class="container" id="clozeAns">
+            <p class="raleway font-small sub-heading">Check your answers</p>
+            <div id="holdsAns"></div>
+            <div id="analysis"></div><br>
+            <div class="btn-container">
+                <button class="btn btn-default flex-btn" id="submitBtn5">Repeat exercise</button>
+                <a href="{{ url_for('logged_in', username=username) }}"><button class="btn btn-default flex-btn">New exercise</button></a>
+                <button class="btn btn-default flex-btn" id="submitBtn4">Save exercise</button>
+                <div id="addTitle" class="titlebox">
+                    <div class="btn-wrapper">
+                        <form method="post" name="savetext">
+                            {{ text_form.csrf_token }}
+                            {{ text_form.user_text (id="textAreaHidden", class="textArea") }}
+                            {{ text_form.title.label (class="raleway font-small") }}: {{ text_form.title(class="loginForm", maxlength="32") }}
+                            {% if user_texts | length < 11 %}
+                            {{ text_form.save (value="Save text", class="btn btn-default") }}
+                            {% else %}
+                            {{ text_form.save (value="Save text", class="btn btn-default", disabled=True) }}
+                            <span class="raleway font-small">Users can save up to 10 files only.</span>
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--END 3. ANS -->
+{% endblock %}
+{% block javascript %}
+    <script src="{{ url_for('static', filename='js/logged-in.js') }}"></script>
+{% endblock %}

@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
         <link rel="shortcut icon" href="{{ url_for('static', filename='img/tb.ico') }}">
-        <title>{% block title %}{% endblock %} | Text Builder </title>
+        <title>Text Builder {% block title %}{% endblock %}</title>
     </head>
 
     <body>
@@ -22,15 +22,86 @@
         {% endif %}
         {% endwith %}
 
+        <div class="container fully">
+        <div class="wrapper">
+            <div class="divider"></div>
+        </div>
 
-        {% block body %}{% endblock %}
+        <!--START HEADER -->
+        <header>
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" id="title-link" href="{{ url_for('index') }}">
+                            <span class="poiret">text</span>
+                            <span class="raleway font-heavy"><strong>Builder</strong></span>
+                            <span class="raleway font-small">v1.96</span>
+                        </a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav navbar-right raleway font-small">
+                            <li><div id="aboutEvent" class="nav-link style-link">about</div></li>
+                            {% if session['user'] and not text %}<li><div id="saveFileEvent" class="nav-link style-link">saved files</div></li>{% endif %}
+                            {% if not session['user'] and not text%}<li><div id="loginEvent" class="nav-link style-link">login</div></li>{% endif %}
+                            {% if session['user'] and not text%}<li><div id="logoutEvent" class="nav-link style-link"><a href="{{ url_for('log_out') }}" class="style-link">logout</a></div></li>{% endif %}
+                        </ul>
+                    </div>
+                </div>
+        </header>
+        <!--END header -->
+
+        <!--START wrapper-->
+        <div id="content-wrap">
+        <!--START ex. ABOUT -->
+        <div id="aboutBox" class="boxes">
+            <i class="fa fa-times closeBox" aria-hidden="true"></i>
+            <div class="box-content">
+                <div class="box-content box-content-grow">
+                    <div class="col-vert">
+                        <p class="raleway font-small sub-heading">learn languages</p>
+                        <p>Text builder is a tool for learning languages. Choose a text, read it and try to remember key phrases and words.</p>
+                    </div>
+                    <div class="col-vert">
+                        <p class="raleway font-small sub-heading">rebuild the text from memory</p>
+                        <p>Choose from 3 levels of difficulty.  The higher the level the more words will be removed from the text.</p>
+                    </div>
+                    <div class="col-vert">
+                        <p class="raleway font-small sub-heading">save and send texts</p>
+                        <p>Teacher? Choose a text and send it to students to read and rebuild.</p>
+                    </div>
+                </div>
+                <div class="col-bottom-right">
+                </div>
+            </div>
+        </div>
+        <!--END about -->
+        {% block header %}{% endblock %}
+
+                {% block body %}{% endblock %}
+            </div>
+            <p>For v1.96:</p>
+            <ul>
+            <li>limit saves to 10 ✔ (# validated with jinja 2 to avoid refresh)</li>
+            <li>js for about in ex-mode (about toggle) ✔ (added builder.js)</li>
+            <li>confirm for delete ✔ (# javascripted)</li>
+            </ul>
+        </div><!--END WRAPPER -->
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         <script src="{{ url_for('static', filename='js/vars.js') }}"></script>
         <script src="{{ url_for('static', filename='js/funcs.js') }}"></script>
         <script src="{{ url_for('static', filename='js/events.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/writeEx.js') }}"></script>
         {% block javascript %}{% endblock %}
+        <script src="{{ url_for('static', filename='js/writeEx.js') }}"></script>
+
     </body>
 </html>

@@ -41,14 +41,6 @@ var resetVariables = function(){
     repeatEx = true;
 };
 
-var removeListeners = function(){
-    aboutBox.style.display = 'none';
-    loginForm.style.display = 'none';
-    savedFiles.style.display = 'none';
-    registerForm.style.display = 'none';
-};
-
-
 var getCloseBtns = function(){
     for (i of closeBox){
         i.addEventListener('click', function(){
@@ -56,3 +48,5 @@ var getCloseBtns = function(){
         });
     };
 };
+
+
